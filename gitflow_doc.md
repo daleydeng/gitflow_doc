@@ -1,4 +1,4 @@
-#Git操作  
+# Git操作
 
 这里只介绍部分操作，更多git的操作参考[廖雪峰的教程](https://www.liaoxuefeng.com/wiki/896043488029600)
 >在本地仓库的操作：
@@ -17,33 +17,33 @@
 >>* pull request：简写成PR，发送子分支合并请求，等待code_reviewer审核
 >>* merge request ： 同意合并请求
 
-#GitFlow简介  
+# GitFlow简介
 
-GitFlow工作流定义了一个围绕项目发布的严格分支模型，它为不同的分支分配了明确的角色，并定义分支之间何时以及如何进行交互。  
-[视频简介](https://www.bilibili.com/video/av32573821/)  
+GitFlow工作流定义了一个围绕项目发布的严格分支模型，它为不同的分支分配了明确的角色，并定义分支之间何时以及如何进行交互。[视频简介](https://www.bilibili.com/video/av32573821/)
 
-##分支简介  
+## 分支简介
+
 GitFlow主要包含了以下分支：  
 >1. master分支：存储正式发布的产品，master分支上的产品要求随时处于可部署状态。master分支只能通过与其他分支合并来更新内容，禁止直接在master分支进行修改。  
 >2. develop分支：汇总开发者完成的工作成果，develop分支上的产品可以是缺失功能模块的半成品，但是已有的功能模块不能是半成品。develop分支只能通过与其他分支合并来更新内容，禁止直接在develop分支进行修改。  
 >3. feature分支：当要开发新功能或者试验新功能时，从develop分支创建一个新的feature分支，并在feature分支上进行开发。开发完成后，需要将该feature分支合并到develop分支，最后删除该feature分支。  
 >4. release分支：当develop分支上的项目准备发布时，从develop分支上创建一个新的release分支，新建的release分支只能进行质量测试、bug修复、文档生成等面向发布的任务，不能再添加功能。这一系列发布任务完成后，需要将release分支合并到master分支上，并根据版本号为master分支添加tag，然后将release分支创建以来的修改合并回develop分支，最后删除release分支。  
 >5. hotfix分支：当master分支中的产品出现需要立即修复的bug时，从master分支上创建一个新的hotfix分支，并在hotfix分支上进行bug修复。修复完成后，需要将hotfix分支合并到master分支和develop分支，并为master分支添加新的版本号tag，最后删除hotfix分支。  
-![](./images/gitflow工作流.png)
+![](.\images\gitflow工作流.png)
 
-##GitFlow流程示范
+## GitFlow流程示范
 
 &emsp;完整的GitFlow分支适用于中大项目，这里只用两个分支做示范：master，develop。 
-&emsp;下面用两个账号做示范，一个账号Checker是项目的创建者和审核者,一个用户WangBo是开发人员（下面的途中左边的是Checker用户，右边的是Wangbo用户）
+&emsp;下面用两个账号做示范，一个账号Checker是项目的创建者和审核者,一个用户wangbo是开发人员（下面的所有图中左边的浏览器打开的是Checker账号，右边的打开的是wangbo账号）
 &emsp;下面为三步的简单介绍：  
 >1. 创建项目，由Checker完成，他需要创建仓库并上传代码生成master分支。  
 >2. fork项目并开发，由开发者wangbo fork主仓库到自己的仓库，然后拉取到本地，并创建 develop分支
 >3. 合并分支，开发者wangbo请求合并自己的develop分支到主仓库的master分支，等待主仓库的创建者Checker审核通过
 
-###1.创建项目
+### 1.创建项目
 
 >>1. 项目启动后，Checker在git服务器上创建一个仓库test_project，这个仓库称为"主仓库"，如下图
-![](./images/创建仓库成功.png)
+![](.\images\创建仓库成功.png)
 >>2. Checker在自己的本地电脑上某文件下初始化git，代码如下：
 ```python
     #创建项目文件夹，并进入
@@ -62,13 +62,13 @@ GitFlow主要包含了以下分支：
     git push repo/test_project master:master
 ```  
 这时刷新远程仓库可以看到已经多了一个develop分支了,如图  
-![](./images/push_master成功.png)
+![](.\images\push_master成功.png)
 
-###2.fork 项目并进行开发
+### 2.fork 项目并进行开发
 
->>1. WangBo在服务器上fork项目到自己的仓库（相当于拷贝项目到自己的仓库）
-![](./images/如何fork.png)
->>2. Wangbo从自己的仓库clone项目到本地，代码如下：  
+>>1. wangbo在服务器上fork项目到自己的仓库（相当于拷贝项目到自己的仓库）
+![](.\images\如何fork.png)
+>>2. wangbo从自己的仓库clone项目到本地，代码如下：  
 ```python
     #创建项目文件夹，并进入，
     mkdir test_project && cd test_project
@@ -86,17 +86,17 @@ GitFlow主要包含了以下分支：
     git push repo/test_project/wangbo develop:develop
 ```
 这时刷新wangbo的远程仓库可以看到已经多了一个develop分支了,如图 
-![](./images/develop分支push成功.png)
+![](.\images\develop分支push成功.png)
  
-###3. 合并分支
+### 3. 合并分支
 
 这时wangbo的远程仓库已经多了一个develop分支了，现在把它合并到主仓库的master分支上
->>1. Wangbo在自己的远程仓库主页面点击"合并请求"->"创建合并请求"，选择合并的子分支和主分支，填写合并请求，等待Checker审核通过，期间也可以看到别人对提交分支的评论。这一步就是Pull Request，简称PR。
-![](./images/合并请求.png)
-![](./images/合并请求2.png)
+>>1. wangbo在自己的远程仓库主页面点击"合并请求"->"创建合并请求"，选择合并的子分支和主分支，填写合并请求，等待Checker审核通过，期间也可以看到别人对提交分支的评论。这一步就是Pull Request，简称PR。
+![](.\images\合并请求.png)
+![](.\image\合并请求2.png)
 >>2. Checker在自己的仓库看到合并请求选项，点进去查看具体合并项，并merge（通过合并），这一步就是code_review。 
-![](./images/审核请求.png) 
-##  
+![](.\images\审核请求.png)
+
 &emsp;到此就算是一个小的开发流程了，后续开发者需要不断的从develop分支pull最新版本到本地，完成开发后，push到自己fork的远程仓库某分支上，然后PR(请求合并)，大致就是在重复第二三步的操作
 
 
