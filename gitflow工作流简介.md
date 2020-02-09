@@ -62,12 +62,12 @@ GitFlow主要包含了以下分支：
     git push repo/test_project master:master
 ```  
 这时刷新远程仓库可以看到已经多了一个develop分支了,如图  
-![avatar](./image/push master仓库成功.png)
+![](./image/push master仓库成功.png)
 
 ###2.fork 项目并进行开发
 
 >>1. WangBo在服务器上fork项目到自己的仓库（相当于拷贝项目到自己的仓库）
-![avatar](./image/如何fork.png)
+![](./image/如何fork.png)
 >>2. Wangbo从自己的仓库clone项目到本地，代码如下：  
 ```python
     #创建项目文件夹，并进入，
@@ -86,16 +86,16 @@ GitFlow主要包含了以下分支：
     git push repo/test_project/wangbo develop:develop
 ```
 这时刷新wangbo的远程仓库可以看到已经多了一个develop分支了,如图 
-![avatar](./image/develop分支push成功.png)
+![](./image/develop分支push成功.png)
  
 ###3. 合并分支
 
 这时wangbo的远程仓库已经多了一个develop分支了，现在把它合并到主仓库的master分支上
 >>1. Wangbo在自己的远程仓库主页面点击"合并请求"->"创建合并请求"，选择合并的子分支和主分支，填写合并请求，等待Checker审核通过，期间也可以看到别人对提交分支的评论。这一步就是Pull Request，简称PR。
-![avatar](./image/合并请求.png)
-![avatar](.\image\合并请求2.png)
+![](./image/合并请求.png)
+![](.\image\合并请求2.png)
 >>2. Checker在自己的仓库看到合并请求选项，点进去查看具体合并项，并merge（通过合并），这一步就是code_review。 
-![avatar](./image/审核请求.png) 
+![](./image/审核请求.png) 
 ##  
 &emsp;到此就算是一个小的开发流程了，后续开发者需要不断的从develop分支pull最新版本到本地，完成开发后，push到自己fork的远程仓库某分支上，然后PR(请求合并)，大致就是在重复第二三步的操作
 
