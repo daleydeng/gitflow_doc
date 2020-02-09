@@ -62,7 +62,7 @@ GitFlow主要包含了以下分支：
     git push repo/test_project master:master
 ```  
 这时刷新远程仓库可以看到已经多了一个develop分支了,如图  
-![](./image/push master仓库成功.png)
+![](./image/push_master成功.png)
 
 ###2.fork 项目并进行开发
 
