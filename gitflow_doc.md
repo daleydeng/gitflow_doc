@@ -25,6 +25,8 @@
 * [GitFlow功能命令指南](#GitFlow功能命令指南)
 * [GitFlow实战演示](#GitFlow实战演示)
 
+![示例](./images/git-flow.png)
+
 # Git基本操作
 
 这里只介绍部分操作，更多git的操作参考[廖雪峰的教程](https://www.liaoxuefeng.com/wiki/896043488029600)。适用于单人本地以及**单人本地远程1对1操作**。本地与远程进行同步推拉(Push,Pull)
