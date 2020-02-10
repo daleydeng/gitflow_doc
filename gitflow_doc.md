@@ -1,44 +1,60 @@
-# Git操作
+# Git基本操作
 
-这里只介绍部分操作，更多git的操作参考[廖雪峰的教程](https://www.liaoxuefeng.com/wiki/896043488029600)
->在本地仓库的操作：
->>* git init：在一个文件夹下初始化git
->>* git add：将更新过的文件添加到git缓存中
->>* git commit：将添加到缓存中的更新提交到分支中
->>* git branch：在当前分支创建新的分支
->>* git checkout ：切换到指定分支
->>* git clone：从某个远程网站克隆一个项目到当前工作路径，url指远程仓库的地址
->>* git pull：远程拉取镜像,remote指远程仓库名，branch指要下载的分支名
->>* git push：将本地分支上传到远程分支  
->>* git merge：分支合并
+这里只介绍部分操作，更多git的操作参考[廖雪峰的教程](https://www.liaoxuefeng.com/wiki/896043488029600)。适用于单人本地以及**单人本地远程1对1操作**。本地与远程进行同步推拉(Push,Pull)
 
->在远程仓库的操作：  
->>* fork：将看中的仓库拉到自己的远程仓库中，可以
->>* pull request：简写成PR，发送子分支合并请求，等待code_reviewer审核
->>* merge request ： 同意合并请求
+## 本地操作：
+```
+git init：在一个文件夹下初始化git
+git add：将更新过的文件添加到git缓存中
+git commit：将添加到缓存中的更新提交到分支中
+git branch：在当前分支创建新的分支
+git checkout ：切换到指定分支
+git clone：从某个远程网站克隆一个项目到当前工作路径，url指远程仓库的地址
+git pull：远程拉取镜像,remote指远程仓库名，branch指要下载的分支名
+git push：将本地分支上传到远程分支  
+git merge：分支合并
+```
+
+## 远程操作
+在Gitea web平台上，该项目远程仓库上的重要操作：  
+- Fork：将看中的仓库拉到自己的远程仓库中，由开发者执行
+- Pull request：简写成PR，发送子分支合并请求，等待审核(Code Review)，由开发者执行
+- Merge request ： 同意合并请求, 由审核者执行
+
+## Tips
+- 本地库也开develop分支，这样推送的时候git会匹配分支，将本地的develop推送到远程镜像的develop
+- 远程仓库可以在仓库Settings页面中Branches里面设置develop为默认展示分支
+![示例](./images/web端repo设置默认分支.png)
+  
+## 一些常用命令
+- 设置分支上游 git push --set-upstream origin {develop}
 
 # GitFlow简介
 
-GitFlow工作流定义了一个围绕项目发布的严格分支模型，它为不同的分支分配了明确的角色，并定义分支之间何时以及如何进行交互。[视频简介](https://www.bilibili.com/video/av32573821/)
+GitFlow工作流定义了一个围绕项目发布的严格分支模型，它为不同的分支分配了明确的角色，并定义分支之间何时以及如何进行交互。[视频简介](https://www.bilibili.com/video/av32573821/)。适用于**多人操作一个共享仓库的情况**，小范围协作。
 
 ## 分支简介
 
-GitFlow主要包含了以下分支：  
->1. master分支：存储正式发布的产品，master分支上的产品要求随时处于可部署状态。master分支只能通过与其他分支合并来更新内容，禁止直接在master分支进行修改。  
->2. develop分支：汇总开发者完成的工作成果，develop分支上的产品可以是缺失功能模块的半成品，但是已有的功能模块不能是半成品。develop分支只能通过与其他分支合并来更新内容，禁止直接在develop分支进行修改。  
->3. feature分支：当要开发新功能或者试验新功能时，从develop分支创建一个新的feature分支，并在feature分支上进行开发。开发完成后，需要将该feature分支合并到develop分支，最后删除该feature分支。  
->4. release分支：当develop分支上的项目准备发布时，从develop分支上创建一个新的release分支，新建的release分支只能进行质量测试、bug修复、文档生成等面向发布的任务，不能再添加功能。这一系列发布任务完成后，需要将release分支合并到master分支上，并根据版本号为master分支添加tag，然后将release分支创建以来的修改合并回develop分支，最后删除release分支。  
->5. hotfix分支：当master分支中的产品出现需要立即修复的bug时，从master分支上创建一个新的hotfix分支，并在hotfix分支上进行bug修复。修复完成后，需要将hotfix分支合并到master分支和develop分支，并为master分支添加新的版本号tag，最后删除hotfix分支。  
-![](./images/gitflow工作流.png)
+GitFlow主要包含了以下分支： 
+1. **master分支**：存储正式发布的产品，master分支上的产品要求随时处于可部署状态。master分支只能通过与其他分支合并请求PR来更新内容，禁止直接在master分支进行修改。  
+2. **develop分支**：汇总开发者完成的工作成果，develop分支上的产品可以是缺失功能模块的半成品，但是已有的功能模块不能是半成品。develop分支只能通过与其他分支合并来更新内容，禁止直接在develop分支进行修改。  
+3. **feature分支**：当要开发新功能或者试验新功能时，从develop分支创建一个新的feature分支，并在feature分支上进行开发。开发完成后，需要将该feature分支合并到develop分支，最后删除该feature分支。  
+4. **release分支**：当develop分支上的项目准备发布时，从develop分支上创建一个新的release分支，新建的release分支只能进行质量测试、bug修复、文档生成等面向发布的任务，不能再添加功能。这一系列发布任务完成后，需要将release分支合并到master分支上，并根据版本号为master分支添加tag，然后将release分支创建以来的修改合并回develop分支，最后删除release分支。  
+5. **hotfix分支**：当master分支中的产品出现需要立即修复的bug时，从master分支上创建一个新的hotfix分支，并在hotfix分支上进行bug修复。修复完成后，需要将hotfix分支合并到master分支和develop分支，并为master分支添加新的版本号tag，最后删除hotfix分支。  
+![示例](./images/gitflow工作流.png)
 
 ## GitFlow流程示范
 
-&emsp;完整的GitFlow分支适用于中大项目，这里只用两个分支做示范：master，develop。 
-&emsp;下面用两个账号做示范，一个账号Checker是项目的创建者和审核者,一个用户wangbo是开发人员（下面的所有图中左边的浏览器打开的是Checker账号，右边的打开的是wangbo账号）
-&emsp;下面为三步的简单介绍：  
->1. 创建项目，由Checker完成，他需要创建仓库并上传代码生成master分支。  
->2. fork项目并开发，由开发者wangbo fork主仓库到自己的仓库，然后拉取到本地，并创建 develop分支
->3. 合并分支，开发者wangbo请求合并自己的develop分支到主仓库的master分支，等待主仓库的创建者Checker审核通过
+完整的GitFlow分支适用于中大项目，这里只用两个分支做示范：master，develop。 
+
+下面用两个账号做示范，一个账号Checker是项目的创建者和审核者（对应于左图）,一个用户wangbo是开发人员（对应于右图）
+
+下面为三步的简单介绍：  
+1. **Init**. Checker/proj. 创建项目，由Checker完成，创建项目主仓库Checker/proj，并默认master分支。  
+2. **Fork**. Checker/proj => wangbo/proj -> wangbo's proj/develop. 由wangbo fork主仓库到wangbo对该项目的远程镜像仓wangbo/proj，落在git服务器wangbo帐号下，然后wangbo clone到本地仓wangbo's proj，并创建develop分支
+3. **Patch**. wangbo's proj/develop -> wangbo/proj/develop. wangbo在本地仓develop分支上开发，并提交到推送wangbo的镜像仓的对应develop分支
+4. **Merge**. wangbo/proj/develop => Checker/proj/develop wangbo远程仓ready后. 合并分支，开发者wangbo请求合并自己的远程仓的develop分支到主仓库的develop分支，Checker审核通过
+5. **Release**. Checker/proj/develop -> Checker/proj/master. 审核者Checker根据需求发布，把主仓库develop merge到master，并根据情况打tag
 
 ### 1.创建项目
 
