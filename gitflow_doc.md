@@ -57,6 +57,8 @@ git merge #分支合并
 
 - git stash 合理的使用会简化你的工作。比如git pull的时候要求本地workspace没有临时更改, 但是修改了又没提交怎么办，此时可以git stash保存先藏起来， git pull更新，然后git stash pop再弹出来合并
 
+- 开发者本地最好有个develop分支，推送的时候git会自动匹配名字。当你在develop分支上git push, git会自动推到develop上
+  
 # GitFlow简介
 
 GitFlow工作流定义了一个围绕项目发布的严格分支模型，它为不同的分支分配了明确的角色，并定义分支之间何时以及如何进行交互。[视频简介](https://www.bilibili.com/video/av32573821/)。适用于**多人操作一个共享仓库的情况**，小范围协作。
