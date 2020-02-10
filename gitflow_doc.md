@@ -51,7 +51,10 @@ GitFlow主要包含了以下分支：
 
 下面为三步的简单介绍：  
 1. **Init 项目组创建项目**.  Checker/proj. ，由Checker完成，创建项目主仓库Checker/proj，并默认master分支。  
-2. **Develop 开发者fork项目并开发**. Checker/proj/develop => wangbo/proj/develop <-> wangbo's proj/develop. 由wangbo fork主仓库到wangbo对该项目的远程镜像仓wangbo/proj，落在git服务器wangbo帐号下，然后wangbo clone到本地仓wangbo's proj，并创建develop分支。王博后续的开发都是基于本地的develop和远程的镜像仓协同开发。
+2. **Develop 开发者fork项目并开发**. Checker/proj/develop => wangbo/proj/develop <-> wangbo's proj/develop. 
+  1. 由wangbo fork主仓库到wangbo对该项目的远程镜像仓wangbo/proj，落在git服务器wangbo帐号下，然后wangbo clone到本地仓wangbo's proj。
+  2. 创建develop分支。王博后续的开发都是基于本地的develop和远程的镜像仓协同开发。
+  3. wangbo应实时拉去主仓库，并和本地合并，保持最新状态。
 3. **Merge 审核者审核并合并项目**. wangbo/proj/develop => Checker/proj/develop wangbo远程仓ready后. 合并分支，开发者wangbo请求合并自己的远程仓的develop分支到主仓库的develop分支，Checker审核通过
 4. **Release 审核者发布版本**. Checker/proj/develop -> Checker/proj/master. 审核者Checker根据需求发布，把主仓库develop merge到master，并根据情况打tag
 
