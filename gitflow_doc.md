@@ -109,68 +109,113 @@ GitFlow主要包含了以下分支：
 
 此时自己本地的代码就是最新的了。功能修改完成后，可继续提交合并请求PR
 
-# GitFlow实战演示
-### 1.创建项目
+# GitFlow简单示范
 
-1. 项目启动后，Checker在git服务器上创建一个仓库test_project，这个仓库称为"主仓库"，如下图
-![创建仓库示例](./images/创建仓库成功.png)
+下面用两个账号做演示，一个叫vision1，一个叫wangbo，vision1负责创建项目并审核，wangbo负责开发并提交审核。
+为了方便观察，以下图中，都将vision仓库放到屏幕左侧，wangbo的放到右侧。
 
-2. Checker在自己的本地repo下初始化git，代码如下：
+## 1.创建主仓库
 
-```python
+由vision1创建主仓库
 
-#创建项目文件夹，并进入
-mkdir test_project && cd test_project
-#初始化git仓库, master branch会默认创建
+![示例](./images/vision1_init.png)
+![示例](./images/vision1_init_success.png)
+
+此时，远程仓库并没有内容，vision1在本地创建仓库，添加内容，提交生成第一个分支master,并在master分支下创建了子分支develop，并添加提交了属于子分支的内容（develop.txt）,代码如下:
+
+```shell
+#初始化一个仓库（如果是git clone就不必初始化，git clone会自动帮你初始化）
 git init
-#新建readme.txt文件并输入内容
-touch readme.txt && echo "hello world">readme.txt
-#添加一个readme.txt到git缓存区
-git add readme.txt
-#将缓存区的内容提交，这时会创建一个分支，因为是第一次commit，会默认创建一个master分支，并切换到master分支，以后每次进入这个目录，都会默认进入master分支
-git commit -m "创建了master分支"
-#这一步是为了给远程仓库创建一个别名，替代冗长的地址
-git remote add repo/test_project https://git.qingtong123.com/Checker/test_project.git
-#将本地的master分支推送到别名为'Main_Project'的远程仓库的master分支上（这个时候远程仓库并没有master分支，会自动创建），其中第一个master指本地分支，第二个master指远程分支
-git push repo/test_project master:master
+#生成了readme.txt文件，并提交到git中，因为没有分支，git会默认帮你创建一个master分支
+touch readme.txt
+git add readme.txt      #这一步会添加r
+git commit -m "这是第一次提交，会默认创建master分支"
+#在新生成的master分支上建一个develop分支
+git branch develop
+#从master分支切换到develop分支
+git checkout develop
+#在develop分支上开发，这里生成了develop.txt，并提交到了develop分支
+touch develop.txt
+git add develop.txt
+git commit -m "基于master分支生成了develop分支，并添加了develop.txt"
+#添加vision1的远程仓库，并给他一个别名为proj
+git remote add proj https://git.qingtong123.com/vision1/proj.git
+#将本地仓库推送到远程仓库，这里-all表示所有分支
+git push proj -all
 ```
-这时刷新远程仓库可以看到已经多了一个develop分支了,如图
-![](./images/push_master成功.png)
 
-### 2.fork 项目并进行开发
+![示例](./images/vision1_push_success.png)
 
->>1. wangbo在服务器上fork项目到自己的仓库（相当于拷贝项目到自己的仓库）
-![](.\images\如何fork.png)
->>2. wangbo从自己的仓库clone项目到本地，代码如下：
-```python
-    #创建项目文件夹，并进入，
-    mkdir test_project && cd test_project
-    #这一步是为了给远程仓库创建一个别名，替代冗长的地址
-    git remote add repo/test_project/wangbo https://git.qingtong123.com/Checker/Main_Project.git
-    #将别名为'Branch_project'的远程仓库的develop分支上，拉取到本地develop分支上（如果本地没有则会自动创建），这里第一个develop为远程分支，第二个develop为本地分支4
-    git pull repo/test_project/wangbo master
-    #在当前分支下创建develop分支并从当前分支切换到develop分支
-    git branch develop && git checkout develop
-    #添加develop分支中的内容,并推送到远程仓库
-    touch develop.txt && echo "create branch called develop under master branch">develop.txt
-    git add develop.txt
-    git commit -m "在master分支下创建了develop分支"
-    #将本地的develop分支推送到远程develop分支，远程没有，会自动创建
-    git push repo/test_project/wangbo develop:develop
+## 2.Fork
+
+wangbo从vision1的仓库fork过来项目
+![示例](./images/wangbo_fork.png)
+
+## 3.Clone
+
+wangbo从自己的远程仓库clone到本地仓库
+
+```shell
+git clone -b develop https://git.qingtong123.com/wangbo/proj.git 
 ```
-这时刷新wangbo的远程仓库可以看到已经多了一个develop分支了,如图
-![](./images/develop分支push成功.png)
 
-### 3. 合并分支
+这里"-b develop"用来指定clone仓库中的develop分支，如果不加，会默认clone master分支
 
-这时wangbo的远程仓库已经多了一个develop分支了，现在把它合并到主仓库的master分支上
->>1. wangbo在自己的远程仓库主页面点击"合并请求"->"创建合并请求"，选择合并的子分支和主分支，填写合并请求，等待Checker审核通过，期间也可以看到别人对提交分支的评论。这一步就是Pull Request，简称PR。
-![](./images/合并请求.png)
-![](./image/合并请求2.png)
->>2. Checker在自己的仓库看到合并请求选项，点进去查看具体合并项，并merge（通过合并），这一步就是code_review。
-![](./images/审核请求.png)
+## 4.Develop
 
-&emsp;到此就算是一个小的开发流程了，后续开发者需要不断的从develop分支pull最新版本到本地，完成开发后，push到自己fork的远程仓库某分支上，然后PR(请求合并)，大致就是在重复第二三步的操作
+wangbo在自己的本地仓库完成开发,并提交到develop分支
+
+```shell
+#clone会把proj下面所有文件拷贝到本地，proj文件夹也包括，而git只管理proj下的内容，所以要进proj文件夹操作
+cd proj
+#开发内容并提交到develop分支
+touch wangbo.txt
+git add wangbo.txt
+git commit -m "在develop分支下开发了wangbo.txt"
+
+```
+
+## 5.Push
+
+这时wangbo本地仓库中的develop开发完毕，要push到远程仓库
+
+```shell
+#添加远程仓库，命名为wangbo/proj
+git remote add wangbo/proj https://git.qingtong123.com/wangbo/proj.git
+#将本地develop分支push到名称为wangbo/proj的远程仓库中，这里第一个develop指本地分支，第二个指远程分支
+git push wangbo/proj develop:develop
+```
+
+push过去后如图
+
+![示例](./images/wangbo_push_success.png)
+
+
+## 6.Pr
+
+wangbo在自己仓库中申请将自己的develop分支合并到主仓库
+
+![示例](./images/wangbo_pr1.png)
+![示例](./images/wangbo_pr2.png)
+![示例](./images/wangbo_pr3.png)
+
+## 7.Merge
+
+vision1收到合并请求的消息，审核后通过
+
+![示例](./images/vision1_merge1.png)
+
+![示例](./images/vision1_merge2.png)
+
+## 8.剩下的工作
+
+以上就完成了一次开发，后面的工作就是重复第4-7步，当然开发过程中wangbo也可以像第1步中vision1创建develop分支那样创建自己的分支feature，并在新的分支上执行4-7（新的分支也要同步到远程仓库）
+
+另外，如果开发者wangbo有两台机器，并在两台机器上都做开发，有一台机器上的代码版本落后于另一台，那么在版本落后的机器上开发时就需要通过git服务器将最新的代码pull到落后机器本地仓库，如下：
+```shell
+git pull proj/wangbo develop:develop
+```
+pull下来后，参照第4-7步进行就OK了
 
 # 小贴士Tips
 
