@@ -1,7 +1,7 @@
 
-# 目标
+# GitFlow项目介绍
 
-为更好的管理和控制我们的代码，并且能够有力的协作开发，将采用我们裁剪的Git工作流模式。下
+为更好的管理和控制我们的代码，并且能够有力的协作开发，将采用我们裁剪的Git工作流模式。
 
 ## 术语定义
 - gitweb = 服务器上git的web平台，用于存放代码。如github, 内部的gitea等
@@ -81,42 +81,12 @@ GitFlow主要包含了以下分支：
 1. **Develop 开发者fork项目并开发**. Checker/proj/develop => wangbo/proj/develop <-> wangbo's proj/develop.
 
    1. 由wangbo fork主仓库到wangbo对该项目的远程镜像仓wangbo/proj，落在git服务器wangbo帐号下，然后wangbo clone到本地仓wangbo's proj。
-<<<<<<< Updated upstream
-   2. 创建develop分支。王博后续的开发都是基于本地的develop和远程的镜像仓协同开发。
-   3. wangbo应实时拉去主仓库，并和本地合并，保持最新状态。
 
-3. **Merge 审核者审核并合并项目**. wangbo/proj/develop => Checker/proj/develop wangbo远程仓ready后. 合并分支，开发者wangbo请求合并自己的远程仓的develop分支到主仓库的develop分支，Checker审核通过
-4. **Release 审核者发布版本**. Checker/proj/develop => Checker/proj/master. 审核者Checker根据需求发布，把主仓库develop merge到master，并根据情况打tag
+   2. 创建develop分支。wangbo后续的开发都是基于本地的develop和远程的镜像仓协同开发。
+   3. wangbo应实时拉取主仓库，并和本地合并，保持最新状态。
 
-## GitFlow命令指南
-> **A** 克隆项目，增加代码
-> 
-> 1. 我们fork 想要参与的项目仓库 **Checker/proj**, fork后会生成：自己的项目 **wangbo/proj**
-> 2. `git clone 自己的项目`
-> 3. `git add .`，`git commit -m ""` 进行更新，提交
-> 4. `git push origin master` 推送到自己的远程仓库  **wangbo/proj**
-> 5. 在 github 上新建 `Pull Request` 请求
-> 6. 审核者Checker会审核你提交的代码，如果合适就会同意合并，这样你的代码就会出现在源项目中。
-
-    当我们睡了一觉起来， Checker/proj 仓库可能已经更新，我们要同步最新代码
-
-> **B** 获取最新代码
->
-> 1. 给远程的上游仓库**Checker/proj**配置一个 remote 。
->    * `git remote -v` 查看远程状态
->    * `git remote add upstream 远程仓库Checker/proj链接`
->       * eg：`git remote add upstream https://xxx.com/Checker/proj.git`
-> 2. `git fetch upstream` 将远程所有的分支fetch下来
-> 3. `git merge upstream/master` 合并非master分支的代码
-> 4. `git pull upstream master` 可以代替流程B的步骤 2+3。 `git pull = fetch + merge`
->
->此时自己本地的代码就是最新的了，修改完代码后，`重复A流程中的步骤 3-5`
-=======
-   1. 创建develop分支。王博后续的开发都是基于本地的develop和远程的镜像仓协同开发。
-   1. wangbo应实时拉取主仓库，并和本地合并，保持最新状态。
-
-1. **Merge 审核者审核并合并项目**. wangbo/proj/develop => Checker/proj/develop wangbo远程仓ready后. 合并分支，开发者wangbo请求合并自己的远程仓的develop分支到主仓库的develop分支，Checker审核通过
-1. **Release 审核者发布版本**. Checker/proj/develop => Checker/proj/master. 审核者Checker根据需求发布，把主仓库develop merge到master，并根据情况打tag
+2. **Merge 审核者审核并合并项目**. wangbo/proj/develop => Checker/proj/develop wangbo远程仓ready后. 合并分支，开发者wangbo请求合并自己的远程仓的develop分支到主仓库的develop分支，Checker审核通过
+3. **Release 审核者发布版本**. Checker/proj/develop => Checker/proj/master. 审核者Checker根据需求发布，把主仓库develop merge到master，并根据情况打tag
 
 # GitFlow功能命令指南
 
@@ -141,7 +111,6 @@ GitFlow主要包含了以下分支：
 4. 将远程所有的分支fetch下来 `git fetch team` 
 5. 合并`git merge team` 
 6. 或者`git pull team develop`。 `git pull = fetch + merge`
->>>>>>> Stashed changes
 
 此时自己本地的代码就是最新的了。功能修改完成后，可继续提交合并请求PR
 
