@@ -16,12 +16,13 @@
 # 目录
 
 * [Git基本操作](#Git基本操作)
-  * [本地操作：](#本地操作)
+  * [本地操作](#本地操作)
   * [远程操作](#远程操作)
+  * [Tips](#tips)
 * [GitFlow简介](#GitFlow简介)
   * [分支简介](#分支简介)
-  * [GitFlow流程示范](#GitFlow流程示范)
-* [GitFlow 命令指南](#GitFlow命令指南)
+  * [GitFlow流程概述](#GitFlow流程概述)
+* [GitFlow功能命令指南](#GitFlow功能命令指南)
 * [GitFlow实战演示](#GitFlow实战演示)
 
 # Git基本操作
