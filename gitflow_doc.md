@@ -27,7 +27,7 @@ git merge #分支合并
 ![示例](./images/web端repo设置默认分支.png)
   
 ## 一些常用命令
-- 设置分支上游 git push --set-upstream origin {{REMOTE_BRANCH_NAME}} e.g. 最好本地分支切换到develop后 git push --set-upstream origin develop, 
+- 设置分支上游 git push --set-upstream origin {{REMOTE_BRANCH_NAME}} e.g. 本地分支切换到develop后 git push --set-upstream origin develop, 本地分支与远程分支名称保持一致。 
 
 # GitFlow简介
 
