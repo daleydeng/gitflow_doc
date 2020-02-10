@@ -4,7 +4,8 @@
 为更好的管理和控制我们的代码，并且能够有力的协作开发，将采用我们裁剪的Git工作流模式。
 
 ## 术语定义
-- gitweb = 服务器上git的web平台，用于存放代码。如github, 内部的gitea等
+- gitweb: 服务器上git的web平台，用于存放代码。如github, 内部的gitea等
+- 箭头信息流表达（=>,->）: 其中双箭头=>表示服务器上repo之间的信息流，通过web按钮实现, 单箭头为本地到服务器之间的信息流
 
 ## 总体原则和指导
 - **干净**。master干净不被污染，必须可运行。开发主要都在develop上完成，不论本地还是远程。develop测试通过以后，将其合并到master.
@@ -76,7 +77,7 @@ GitFlow主要包含了以下分支：
 
 下面用两个账号做示范，一个账号Checker是项目的创建者和审核者（对应于左图）,一个用户wangbo是开发人员（对应于右图）
 
-主要步骤如下，其中双箭头=>表示服务器上repo之间的信息流，通过web按钮实现, 单箭头为本地到服务器之间的信息流：
+主要步骤如下，：
 1. **Init 项目组创建项目**.  Checker/proj. ，由Checker完成，创建项目主仓库Checker/proj，并默认master分支。
 1. **Develop 开发者fork项目并开发**. Checker/proj/develop => wangbo/proj/develop <-> wangbo's proj/develop.
 
@@ -93,7 +94,7 @@ GitFlow主要包含了以下分支：
 ## 向主库贡献代码
 
 贡献代码的主要步骤是克隆(clone)，开发(develop)与合并(merge)，具体如下：
-1. **Fork**. 在gitweb中，目标项目{REMOTE_REPO}={TARGET_USER}/{PROJECT}上点击fork,会生成自己的项目 {USER}/{PROJECT}. e.g. Checker/proj -> wangbo/proj
+1. **Fork**. 在gitweb中，目标项目{REMOTE_REPO}={TARGET_USER}/{PROJECT}上点击fork,会生成自己的项目 {USER}/{PROJECT}. e.g. Checker/proj => wangbo/proj
 2. **Clone**. `git clone {URL}`.
 3. **Develop**. `git add {FILES}`，`git commit -m "{COMMIT_MESSAGE}"` 进行更新，提交到本地
 4. **Push** `git push origin develop` 推送到自己的远程仓库  wangbo/proj/develop
