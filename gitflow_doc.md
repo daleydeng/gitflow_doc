@@ -92,7 +92,7 @@ GitFlow主要包含了以下分支：
 
 ## 克隆，开发与合并(Fork, Develop & Merge)
 
-主要步骤：
+贡献代码的主要步骤：
 1. **Fork**. 在gitweb中，目标项目{REMOTE_REPO}={TARGET_USER}/{PROJECT}上点击fork,会生成自己的项目 {USER}/{PROJECT}. e.g. Checker/proj -> wangbo/proj
 1. **Clone**. `git clone {URL}`.
 1. **Develop**. `git add {FILES}`，`git commit -m "{COMMIT_MESSAGE}"` 进行更新，提交到本地
@@ -104,13 +104,14 @@ GitFlow主要包含了以下分支：
 
 ## 拉取最新代码(Pull)
 
+更新本地代码的主要步骤
 1. 确保本地在develop分支
-1. 给远程的上游仓库**Checker/proj**配置一个remote。
-2. 查看远程状态 `git remote -v` 
-3. 配置remote上游. `git remote add {REMOTE_NAME} {REMOTE_REPO}`. e.g：`git remote add team https://xxx.com/Checker/proj.git`
-4. 将远程所有的分支fetch下来 `git fetch team` 
-5. 合并`git merge team` 
-6. 或者`git pull team develop`。 `git pull = fetch + merge`
+1. 给远程的上游仓库Checker/proj配置一个remote。
+1. 查看远程状态 `git remote -v` 
+1. 配置remote上游. `git remote add {REMOTE_NAME} {REMOTE_REPO}`. e.g：`git remote add team https://xxx.com/Checker/proj.git`
+1. 将远程所有的分支fetch下来 `git fetch team` 
+1. 合并`git merge team` 
+1. 或者`git pull team develop`。 `git pull = fetch + merge`
 
 此时自己本地的代码就是最新的了。功能修改完成后，可继续提交合并请求PR
 
