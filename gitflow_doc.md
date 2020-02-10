@@ -62,6 +62,8 @@ git merge #分支合并
 
 - 开发者本地最好有个develop分支，推送的时候git会自动匹配名字。当你在develop分支上git push, git会自动推到develop上
 
+- 在commit时， 如果message中有类似  "Fixes", "Fixed", "Fix", "Closes", "Closed"， "Close"等字样, 可以直接在push时关闭对应的issue, 例如 git commit -m "Close #1"， 即可关闭#1 issue
+
 # GitFlow简介
 
 GitFlow工作流定义了一个围绕项目发布的严格分支模型，它为不同的分支分配了明确的角色，并定义分支之间何时以及如何进行交互。[视频简介](https://www.bilibili.com/video/av32573821/)。适用于**多人操作一个共享仓库的情况**，小范围协作。
