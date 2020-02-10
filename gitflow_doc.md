@@ -3,9 +3,11 @@
   * [远程操作](#远程操作)
 * [GitFlow简介](#GitFlow简介)
   * [分支简介](#分支简介)
-  * [GitFlow流程示范](#GitFlow流程示范)
+  * [GitFlow 流程示范](#GitFlow流程示范)
   * [GitFlow 命令指南](#GitFlow命令指南)
 * [GitFlow实战演示](#GitFlow实战演示)
+
+![示例](./images/git-flow.png)
 
 # Git基本操作
 
