@@ -1,7 +1,7 @@
 
 # GitFlow项目介绍
 
-为更好的管理和控制我们的代码，并且能够有力的协作开发，将采用我们裁剪的Git工作流模式。
+为了更有力，更深度，更快速的协作开发。并且更好的进行版本管理和控制项目代码，我们将采用自定义的GitFlow工作流模式。
 
 ## 术语定义
 - gitweb: 服务器上git的web平台，用于存放代码。如github, 内部的gitea等
@@ -59,7 +59,7 @@ git merge #分支合并
 - git stash 合理的使用会简化你的工作。比如git pull的时候要求本地workspace没有临时更改, 但是修改了又没提交怎么办，此时可以git stash保存先藏起来， git pull更新，然后git stash pop再弹出来合并
 
 - 开发者本地最好有个develop分支，推送的时候git会自动匹配名字。当你在develop分支上git push, git会自动推到develop上
-  
+
 # GitFlow简介
 
 GitFlow工作流定义了一个围绕项目发布的严格分支模型，它为不同的分支分配了明确的角色，并定义分支之间何时以及如何进行交互。[视频简介](https://www.bilibili.com/video/av32573821/)。适用于**多人操作一个共享仓库的情况**，小范围协作。
@@ -111,10 +111,10 @@ GitFlow主要包含了以下分支：
 更新本地代码主要是拉取操作(pull)，具体如下：
 1. 确保本地在develop分支
 2. 给远程的上游仓库Checker/proj配置一个remote。
-3. 查看远程状态 `git remote -v` 
+3. 查看远程状态 `git remote -v`
 4. 配置remote上游. `git remote add {REMOTE_NAME} {REMOTE_REPO}`. e.g：`git remote add team https://xxx.com/Checker/proj.git`
-5. 将远程所有的分支fetch下来 `git fetch team` 
-6. 合并`git merge team` 
+5. 将远程所有的分支fetch下来 `git fetch team`
+6. 合并`git merge team`
 7. 或者`git pull team develop`。 `git pull = fetch + merge`
 
 此时自己本地的代码就是最新的了。功能修改完成后，可继续提交合并请求PR
