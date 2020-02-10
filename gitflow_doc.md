@@ -3,16 +3,16 @@
 这里只介绍部分操作，更多git的操作参考[廖雪峰的教程](https://www.liaoxuefeng.com/wiki/896043488029600)。适用于单人本地以及**单人本地远程1对1操作**。本地与远程进行同步推拉(Push,Pull)
 
 ## 本地操作：
-```
-git init：在一个文件夹下初始化git
-git add：将更新过的文件添加到git缓存中
-git commit：将添加到缓存中的更新提交到分支中
-git branch：在当前分支创建新的分支
-git checkout ：切换到指定分支
-git clone：从某个远程网站克隆一个项目到当前工作路径，url指远程仓库的地址
-git pull：远程拉取镜像,remote指远程仓库名，branch指要下载的分支名
-git push：将本地分支上传到远程分支  
-git merge：分支合并
+```shell
+git init #在一个文件夹下初始化git
+git add #将更新过的文件添加到git缓存中
+git commit #将添加到缓存中的更新提交到分支中
+git branch #在当前分支创建新的分支
+git checkout #切换到指定分支
+git clone #从某个远程网站克隆一个项目到当前工作路径，url指远程仓库的地址
+git pull #远程拉取镜像,remote指远程仓库名，branch指要下载的分支名
+git push #将本地分支上传到远程分支  
+git merge #分支合并
 ```
 
 ## 远程操作
