@@ -24,7 +24,7 @@
   * [分支简介](#分支简介)
   * [GitFlow流程概述](#GitFlow流程概述)
 * [GitFlow功能命令指南](#GitFlow功能命令指南)
-* [GitFlow实战演示](#GitFlow实战演示)
+* [GitFlow简单示范](#GitFlow简单示范)
 * [Tips](#tips)
 
 # Git基本操作
@@ -68,41 +68,41 @@ GitFlow主要包含了以下分支：
 
 完整的GitFlow分支适用于中大项目，操作起来较为复杂。在一般的小规模项目中，我们对gitflow实施了定制。只保留核心的master和develop分支，便于实践和推广。
 
-下面用两个账号做示范，一个账号Checker是项目的创建者和审核者（对应于左图）,一个用户wangbo是开发人员（对应于右图）
+下面演示部分用两个账号做示范，一个账号vision1是项目的创建者和审核者（对应于左图）,一个用户wangbo是开发人员（对应于右图）
 
 主要步骤如下：
-1. **Init 项目组创建项目**.  Checker/proj. ，由Checker完成，创建项目主仓库Checker/proj，并默认master分支。
-1. **Develop 开发者fork项目并开发**. Checker/proj/develop => wangbo/proj/develop <-> wangbo's proj/develop.
+1. **Init 项目组创建项目**.  vision1/proj. ，由vision1完成，创建项目主仓库vision1/proj，并默认master分支。
+1. **Develop 开发者fork项目并开发**. vision1/proj/develop => wangbo/proj/develop <-> wangbo's proj/develop.
 
    1. 由wangbo fork主仓库到wangbo对该项目的远程镜像仓wangbo/proj，落在git服务器wangbo帐号下，然后wangbo clone到本地仓wangbo's proj。
 
    2. 创建develop分支。wangbo后续的开发都是基于本地的develop和远程的镜像仓协同开发。
    3. wangbo应实时拉取主仓库，并和本地合并，保持最新状态。
 
-2. **Merge 审核者审核并合并项目**. wangbo/proj/develop => Checker/proj/develop wangbo远程仓ready后. 合并分支，开发者wangbo请求合并自己的远程仓的develop分支到主仓库的develop分支，Checker审核通过
-3. **Release 审核者发布版本**. Checker/proj/develop => Checker/proj/master. 审核者Checker根据需求发布，把主仓库develop merge到master，并根据情况打tag
+2. **Merge 审核者审核并合并项目**. wangbo/proj/develop => vision1/proj/develop wangbo远程仓ready后. 合并分支，开发者wangbo请求合并自己的远程仓的develop分支到主仓库的develop分支，vision1审核通过
+3. **Release 审核者发布版本**. vision1/proj/develop => vision1/proj/master. 审核者vision1根据需求发布，把主仓库develop merge到master，并根据情况打tag
 
 # GitFlow功能命令指南
 
 ## 向主库贡献代码
 
 贡献代码的主要步骤是克隆(clone)，开发(develop)与合并(merge)，具体如下：
-1. **Fork**. 在gitweb中，目标项目{REMOTE_REPO}={TARGET_USER}/{PROJECT}上点击fork,会生成自己的项目 {USER}/{PROJECT}. e.g. Checker/proj => wangbo/proj
+1. **Fork**. 在gitweb中，目标项目{REMOTE_REPO}={TARGET_USER}/{PROJECT}上点击fork,会生成自己的项目 {USER}/{PROJECT}. e.g. vision1/proj => wangbo/proj
 2. **Clone**. `git clone {URL}`.
 3. **Develop**. `git add {FILES}`，`git commit -m "{COMMIT_MESSAGE}"` 进行更新，提交到本地
 4. **Push** `git push origin develop` 推送到自己的远程仓库  wangbo/proj/develop
 5. **PR**. web上打开`Pull Request` 请求, 等待审核。
-6. **Merge**. 审核者Checker会审核你提交的代码，若没问题则接受合并。若有问题，双方在PR面板上交流讨论后，继续改进后续再次提交PR或者开发者说服审核者通过该PR.
+6. **Merge**. 审核者vision1会审核你提交的代码，若没问题则接受合并。若有问题，双方在PR面板上交流讨论后，继续改进后续再次提交PR或者开发者说服审核者通过该PR.
 
-当我们睡了一觉起来， 目标仓库(e.g. Checker/proj)可能已经更新，我们要同步最新代码。
+当我们睡了一觉起来， 目标仓库(e.g. vision1/proj)可能已经更新，我们要同步最新代码。
 
 ## 在本地更新代码
 
 更新本地代码主要是拉取操作(pull)，具体如下：
 1. 确保本地在develop分支
-2. 给远程的上游仓库Checker/proj配置一个remote。
+2. 给远程的上游仓库vision1/proj配置一个remote。
 3. 查看远程状态 `git remote -v`
-4. 配置remote上游. `git remote add {REMOTE_NAME} {REMOTE_REPO}`. e.g：`git remote add team https://xxx.com/Checker/proj.git`
+4. 配置remote上游. `git remote add {REMOTE_NAME} {REMOTE_REPO}`. e.g：`git remote add team https://xxx.com/vision1/proj.git`
 5. 将远程所有的分支fetch下来 `git fetch team`
 6. 合并`git merge team`
 7. 或者`git pull team develop`。 `git pull = fetch + merge`
@@ -112,7 +112,7 @@ GitFlow主要包含了以下分支：
 # GitFlow简单示范
 
 下面用两个账号做演示，一个叫vision1，一个叫wangbo，vision1负责创建项目并审核，wangbo负责开发并提交审核。
-为了方便观察，以下图中，都将vision仓库放到屏幕左侧，wangbo的放到右侧。
+为了方便观察，以下图中，都将vision1仓库放到屏幕左侧，wangbo的放到右侧。
 
 ## 1.创建主仓库
 
@@ -181,10 +181,8 @@ git commit -m "在develop分支下开发了wangbo.txt"
 这时wangbo本地仓库中的develop开发完毕，要push到远程仓库
 
 ```shell
-#添加远程仓库，命名为wangbo/proj
-git remote add wangbo/proj https://git.qingtong123.com/wangbo/proj.git
-#将本地develop分支push到名称为wangbo/proj的远程仓库中，这里第一个develop指本地分支，第二个指远程分支
-git push wangbo/proj develop:develop
+#将本地develop分支push到远程仓库的develop，这里第一个develop指本地分支，第二个指远程分支
+git push origin develop:develop
 ```
 
 push过去后如图
