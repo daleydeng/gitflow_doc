@@ -60,6 +60,32 @@ GitFlow主要包含了以下分支：
 3. **Merge 审核者审核并合并项目**. wangbo/proj/develop => Checker/proj/develop wangbo远程仓ready后. 合并分支，开发者wangbo请求合并自己的远程仓的develop分支到主仓库的develop分支，Checker审核通过
 4. **Release 审核者发布版本**. Checker/proj/develop => Checker/proj/master. 审核者Checker根据需求发布，把主仓库develop merge到master，并根据情况打tag
 
+### GitFlow 命令指南
+> **A** 克隆项目，增加代码
+> 
+> 1. 我们fork 想要参与的项目仓库 **Checker/proj**, fork后会生成：自己的项目 **wangbo/proj**
+> 2. `git clone 自己的项目`
+> 3. `git add .`，`git commit -m ""` 进行更新，提交
+> 4. `git push origin master` 推送到自己的远程仓库  **wangbo/proj**
+> 5. 在 github 上新建 `Pull Request` 请求
+> 6. 审核者Checker会审核你提交的代码，如果合适就会同意合并，这样你的代码就会出现在源项目中。
+
+    当我们睡了一觉起来， Checker/proj 仓库可能已经更新，我们要同步最新代码
+
+> **B** 获取最新代码
+>
+> 1. 给远程的上游仓库**Checker/proj**配置一个 remote 。
+>    * `git remote -v` 查看远程状态
+>    * `git remote add upstream 远程仓库Checker/proj链接`
+>       * eg：`git remote add upstream https://xxx.com/Checker/proj.git`
+> 2. `git fetch upstream` 将远程所有的分支fetch下来
+> 3. `git merge upstream/master` 合并非master分支的代码
+> 4. `git pull upstream master` 可以代替流程B的步骤 2+3。 `git pull = fetch + merge`
+>
+>此时自己本地的代码就是最新的了，修改完代码后，`重复A流程中的步骤 3-5`
+
+
+## GitFlow实战演示
 ### 1.创建项目
 
 >>1. 项目启动后，Checker在git服务器上创建一个仓库test_project，这个仓库称为"主仓库"，如下图
