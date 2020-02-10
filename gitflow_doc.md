@@ -90,28 +90,28 @@ GitFlow主要包含了以下分支：
 
 # GitFlow功能命令指南
 
-## 克隆，开发与合并(Fork, Develop & Merge)
+## 贡献代码
 
-贡献代码的主要步骤：
+贡献代码的主要步骤是克隆(clone)，开发(develop)与合并(merge)，具体如下：
 1. **Fork**. 在gitweb中，目标项目{REMOTE_REPO}={TARGET_USER}/{PROJECT}上点击fork,会生成自己的项目 {USER}/{PROJECT}. e.g. Checker/proj -> wangbo/proj
-1. **Clone**. `git clone {URL}`.
-1. **Develop**. `git add {FILES}`，`git commit -m "{COMMIT_MESSAGE}"` 进行更新，提交到本地
-1. **Push** `git push origin develop` 推送到自己的远程仓库  wangbo/proj/develop
-1. **PR**. web上打开`Pull Request` 请求, 等待审核。
-1. **Merge**. 审核者Checker会审核你提交的代码，若没问题则接受合并。若有问题，双方在PR面板上交流讨论后，继续改进后续再次提交PR或者开发者说服审核者通过该PR.
+2. **Clone**. `git clone {URL}`.
+3. **Develop**. `git add {FILES}`，`git commit -m "{COMMIT_MESSAGE}"` 进行更新，提交到本地
+4. **Push** `git push origin develop` 推送到自己的远程仓库  wangbo/proj/develop
+5. **PR**. web上打开`Pull Request` 请求, 等待审核。
+6. **Merge**. 审核者Checker会审核你提交的代码，若没问题则接受合并。若有问题，双方在PR面板上交流讨论后，继续改进后续再次提交PR或者开发者说服审核者通过该PR.
 
 当我们睡了一觉起来， 目标仓库(e.g. Checker/proj)可能已经更新，我们要同步最新代码。
 
-## 拉取最新代码(Pull)
+## 更新本地代码
 
-更新本地代码的主要步骤
+更新本地代码主要是拉取操作(pull)，具体如下：
 1. 确保本地在develop分支
-1. 给远程的上游仓库Checker/proj配置一个remote。
-1. 查看远程状态 `git remote -v` 
-1. 配置remote上游. `git remote add {REMOTE_NAME} {REMOTE_REPO}`. e.g：`git remote add team https://xxx.com/Checker/proj.git`
-1. 将远程所有的分支fetch下来 `git fetch team` 
-1. 合并`git merge team` 
-1. 或者`git pull team develop`。 `git pull = fetch + merge`
+2. 给远程的上游仓库Checker/proj配置一个remote。
+3. 查看远程状态 `git remote -v` 
+4. 配置remote上游. `git remote add {REMOTE_NAME} {REMOTE_REPO}`. e.g：`git remote add team https://xxx.com/Checker/proj.git`
+5. 将远程所有的分支fetch下来 `git fetch team` 
+6. 合并`git merge team` 
+7. 或者`git pull team develop`。 `git pull = fetch + merge`
 
 此时自己本地的代码就是最新的了。功能修改完成后，可继续提交合并请求PR
 
