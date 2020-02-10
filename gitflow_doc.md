@@ -29,6 +29,8 @@ git merge #分支合并
 
 - 设置分支上游 git push --set-upstream origin {{REMOTE_BRANCH_NAME}} e.g. 本地分支切换到develop后 git push --set-upstream origin develop, 本地分支与远程分支名称保持一致。
 
+- git stash 合理的使用会简化你的工作。比如git pull的时候要求本地workspace没有临时更改, 但是修改了又没提交怎么办，此时可以git stash保存先藏起来， git pull更新，然后git stash pop再弹出来合并
+
 # GitFlow简介
 
 GitFlow工作流定义了一个围绕项目发布的严格分支模型，它为不同的分支分配了明确的角色，并定义分支之间何时以及如何进行交互。[视频简介](https://www.bilibili.com/video/av32573821/)。适用于**多人操作一个共享仓库的情况**，小范围协作。
@@ -88,24 +90,27 @@ GitFlow主要包含了以下分支：
 ## GitFlow实战演示
 ### 1.创建项目
 
->>1. 项目启动后，Checker在git服务器上创建一个仓库test_project，这个仓库称为"主仓库"，如下图
-![](./images/创建仓库成功.png)
->>2. Checker在自己的本地电脑上某文件下初始化git，代码如下：
+1. 项目启动后，Checker在git服务器上创建一个仓库test_project，这个仓库称为"主仓库"，如下图
+![创建仓库示例](./images/创建仓库成功.png)
+
+2. Checker在自己的本地repo下初始化git，代码如下：
+
 ```python
-    #创建项目文件夹，并进入
-    mkdir Checker && cd Checker
-    #初始化git仓库
-    git init
-    #新建readme.txt文件并输入内容
-    touch readme.txt && echo "create a branch called master">readme.txt
-    #添加一个readme.txt到git缓存区
-    git add readme.txt
-    #将缓存区的内容提交，这时会创建一个分支，因为是第一次commit，会默认创建一个master分支，并切换到master分支，以后每次进入这个目录，都会默认进入master分支
-    git commit -m "创建了master分支"
-    #这一步是为了给远程仓库创建一个别名，替代冗长的地址
-    git remote add repo/test_project https://git.qingtong123.com/Checker/test_project.git
-    #将本地的master分支推送到别名为'Main_Project'的远程仓库的master分支上（这个时候远程仓库并没有master分支，会自动创建），其中第一个master指本地分支，第二个master指远程分支
-    git push repo/test_project master:master
+
+#创建项目文件夹，并进入
+mkdir test_project && cd test_project
+#初始化git仓库, master branch会默认创建
+git init
+#新建readme.txt文件并输入内容
+touch readme.txt && echo "hello world">readme.txt
+#添加一个readme.txt到git缓存区
+git add readme.txt
+#将缓存区的内容提交，这时会创建一个分支，因为是第一次commit，会默认创建一个master分支，并切换到master分支，以后每次进入这个目录，都会默认进入master分支
+git commit -m "创建了master分支"
+#这一步是为了给远程仓库创建一个别名，替代冗长的地址
+git remote add repo/test_project https://git.qingtong123.com/Checker/test_project.git
+#将本地的master分支推送到别名为'Main_Project'的远程仓库的master分支上（这个时候远程仓库并没有master分支，会自动创建），其中第一个master指本地分支，第二个master指远程分支
+git push repo/test_project master:master
 ```
 这时刷新远程仓库可以看到已经多了一个develop分支了,如图
 ![](./images/push_master成功.png)
