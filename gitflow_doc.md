@@ -50,23 +50,6 @@ git merge #分支合并
 - Pull request：简写成PR，发送子分支合并请求，等待审核(Code Review)，由开发者执行
 - Merge request ： 同意合并请求, 由审核者执行
 
-## Tips
-- 本地库也开develop分支，这样推送的时候git会匹配分支，将本地的develop推送到远程镜像的develop
-
-- 远程仓库可以在仓库Settings页面中Branches里面设置develop为默认展示分支
-![示例](./images/web端repo设置默认分支.png)
-
-- 设置分支上游 git push --set-upstream origin {{REMOTE_BRANCH_NAME}} e.g. 本地分支切换到develop后 git push --set-upstream origin develop, 本地分支与远程分支名称保持一致。
-
-- git stash 合理的使用会简化你的工作。比如git pull的时候要求本地workspace没有临时更改, 但是修改了又没提交怎么办，此时可以git stash保存先藏起来， git pull更新，然后git stash pop再弹出来合并
-
-- 开发者本地最好有个develop分支，推送的时候git会自动匹配名字。当你在develop分支上git push, git会自动推到develop上
-
-- 在commit时， 如果message中有类似  "Fixes", "Fixed", "Fix", "Closes", "Closed"， "Close"等字样, 可以直接在push时关闭对应的issue, 例如 git commit -m "Close #1"， 即可关闭#1 issue
-
-- 开发推荐使用zsh, 能够实时显示项目当前所在的分支，ohmyzsh设置漂亮的主题 https://ohmyz.sh/
-![zsh主体](./images/zsh_theme.png)
-
 # GitFlow简介
 
 GitFlow工作流定义了一个围绕项目发布的严格分支模型，它为不同的分支分配了明确的角色，并定义分支之间何时以及如何进行交互。[视频简介](https://www.bilibili.com/video/av32573821/)。适用于**多人操作一个共享仓库的情况**，小范围协作。
@@ -188,3 +171,20 @@ git push repo/test_project master:master
 ![](./images/审核请求.png)
 
 &emsp;到此就算是一个小的开发流程了，后续开发者需要不断的从develop分支pull最新版本到本地，完成开发后，push到自己fork的远程仓库某分支上，然后PR(请求合并)，大致就是在重复第二三步的操作
+
+# 小贴士Tips
+- 本地库也开develop分支，这样推送的时候git会匹配分支，将本地的develop推送到远程镜像的develop
+
+- 远程仓库可以在仓库Settings页面中Branches里面设置develop为默认展示分支
+![示例](./images/web端repo设置默认分支.png)
+
+- 设置分支上游 git push --set-upstream origin {{REMOTE_BRANCH_NAME}} e.g. 本地分支切换到develop后 git push --set-upstream origin develop, 本地分支与远程分支名称保持一致。
+
+- git stash 合理的使用会简化你的工作。比如git pull的时候要求本地workspace没有临时更改, 但是修改了又没提交怎么办，此时可以git stash保存先藏起来， git pull更新，然后git stash pop再弹出来合并
+
+- 开发者本地最好有个develop分支，推送的时候git会自动匹配名字。当你在develop分支上git push, git会自动推到develop上
+
+- 在commit时， 如果message中有类似  "Fixes", "Fixed", "Fix", "Closes", "Closed"， "Close"等字样, 可以直接在push时关闭对应的issue, 例如 git commit -m "Close #1"， 即可关闭#1 issue
+
+- 开发推荐使用zsh, 能够实时显示项目当前所在的分支，ohmyzsh设置漂亮的主题 https://ohmyz.sh/
+![zsh主体](./images/zsh_theme.png)
