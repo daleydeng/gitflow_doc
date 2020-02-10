@@ -119,6 +119,7 @@ GitFlow主要包含了以下分支：
 由vision1创建主仓库
 
 ![示例](./images/vision1_init.png)
+
 ![示例](./images/vision1_init_success.png)
 
 此时，远程仓库并没有内容，vision1在本地创建仓库，添加内容，提交生成第一个分支master,并在master分支下创建了子分支develop，并添加提交了属于子分支的内容（develop.txt）,代码如下:
@@ -190,13 +191,14 @@ push过去后如图
 
 ![示例](./images/wangbo_push_success.png)
 
-
 ## 6.Pr
 
 wangbo在自己仓库中申请将自己的develop分支合并到主仓库
 
 ![示例](./images/wangbo_pr1.png)
+
 ![示例](./images/wangbo_pr2.png)
+
 ![示例](./images/wangbo_pr3.png)
 
 ## 7.Merge
