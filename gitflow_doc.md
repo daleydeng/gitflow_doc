@@ -1,10 +1,17 @@
-[TOC]
+* [Git基本操作](#Git基本操作)
+  * [本地操作：](#本地操作)
+  * [远程操作](#远程操作)
+* [GitFlow简介](#GitFlow简介)
+  * [分支简介](#分支简介)
+  * [GitFlow流程示范](#GitFlow流程示范)
+  * [GitFlow 命令指南](#GitFlow命令指南)
+* [GitFlow实战演示](#GitFlow实战演示)
 
 # Git基本操作
 
 这里只介绍部分操作，更多git的操作参考[廖雪峰的教程](https://www.liaoxuefeng.com/wiki/896043488029600)。适用于单人本地以及**单人本地远程1对1操作**。本地与远程进行同步推拉(Push,Pull)
 
-## 本地操作：
+## 本地操作
 ```shell
 git init #在一个文件夹下初始化git
 git add #将更新过的文件添加到git缓存中
@@ -62,7 +69,7 @@ GitFlow主要包含了以下分支：
 3. **Merge 审核者审核并合并项目**. wangbo/proj/develop => Checker/proj/develop wangbo远程仓ready后. 合并分支，开发者wangbo请求合并自己的远程仓的develop分支到主仓库的develop分支，Checker审核通过
 4. **Release 审核者发布版本**. Checker/proj/develop => Checker/proj/master. 审核者Checker根据需求发布，把主仓库develop merge到master，并根据情况打tag
 
-### GitFlow 命令指南
+## GitFlow命令指南
 > **A** 克隆项目，增加代码
 > 
 > 1. 我们fork 想要参与的项目仓库 **Checker/proj**, fork后会生成：自己的项目 **wangbo/proj**
@@ -87,7 +94,7 @@ GitFlow主要包含了以下分支：
 >此时自己本地的代码就是最新的了，修改完代码后，`重复A流程中的步骤 3-5`
 
 
-## GitFlow实战演示
+# GitFlow实战演示
 ### 1.创建项目
 
 >>1. 项目启动后，Checker在git服务器上创建一个仓库test_project，这个仓库称为"主仓库"，如下图
