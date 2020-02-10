@@ -1,10 +1,26 @@
+
+# 目标
+
+为更好的管理和控制我们的代码，并且能够有力的协作开发，将采用我们裁剪的Git工作流模式。下
+
+## 术语定义
+- gitweb = 服务器上git的web平台，用于存放代码。如github, 内部的gitea等
+
+## 总体原则和指导
+- **干净**。master干净不被污染，必须可运行。开发主要都在develop上完成，不论本地还是远程。develop测试通过以后，将其合并到master.
+- **PR控制**。PR=Pull Request, 合并请求。代码管理的本质是对PR的管理。目标仓库的更改只能通过审核者通过的PR。不能直接更改，保证纯洁性。gitweb上PR面板中可用来审核者和开发者深入交流讨论该PR的细节。鼓励审核者和开发者多交流。
+- **分布开发**。每个开发者各开发各的，通过提交PR实现主仓库的功能更新。
+- **ISSUES建议**。其他人对项目的一些修改意见，但是无开发权限，如管理层人员之类的，可以通过gitweb上该项目的ISSUES面板提出建议，开发者根据情况回应。鼓励多讨论多提建议。
+
+# 目录
+
 * [Git基本操作](#Git基本操作)
   * [本地操作：](#本地操作)
   * [远程操作](#远程操作)
 * [GitFlow简介](#GitFlow简介)
   * [分支简介](#分支简介)
   * [GitFlow流程示范](#GitFlow流程示范)
-  * [GitFlow 命令指南](#GitFlow命令指南)
+* [GitFlow 命令指南](#GitFlow命令指南)
 * [GitFlow实战演示](#GitFlow实战演示)
 
 # Git基本操作
@@ -25,7 +41,7 @@ git merge #分支合并
 ```
 
 ## 远程操作
-在Gitea web平台上，该项目远程仓库上的重要操作：
+在gitweb平台上，该项目远程仓库上的重要操作：
 - Fork：将看中的仓库拉到自己的远程仓库中，由开发者执行
 - Pull request：简写成PR，发送子分支合并请求，等待审核(Code Review)，由开发者执行
 - Merge request ： 同意合并请求, 由审核者执行
@@ -48,23 +64,24 @@ GitFlow工作流定义了一个围绕项目发布的严格分支模型，它为�
 
 GitFlow主要包含了以下分支：
 1. **master分支**：存储正式发布的产品，master分支上的产品要求随时处于可部署状态。master分支只能通过与其他分支合并请求PR来更新内容，禁止直接在master分支进行修改。
-2. **develop分支**：汇总开发者完成的工作成果，develop分支上的产品可以是缺失功能模块的半成品，但是已有的功能模块不能是半成品。develop分支只能通过与其他分支合并来更新内容，禁止直接在develop分支进行修改。
-3. **feature分支**：当要开发新功能或者试验新功能时，从develop分支创建一个新的feature分支，并在feature分支上进行开发。开发完成后，需要将该feature分支合并到develop分支，最后删除该feature分支。
-4. **release分支**：当develop分支上的项目准备发布时，从develop分支上创建一个新的release分支，新建的release分支只能进行质量测试、bug修复、文档生成等面向发布的任务，不能再添加功能。这一系列发布任务完成后，需要将release分支合并到master分支上，并根据版本号为master分支添加tag，然后将release分支创建以来的修改合并回develop分支，最后删除release分支。
-5. **hotfix分支**：当master分支中的产品出现需要立即修复的bug时，从master分支上创建一个新的hotfix分支，并在hotfix分支上进行bug修复。修复完成后，需要将hotfix分支合并到master分支和develop分支，并为master分支添加新的版本号tag，最后删除hotfix分支。
+1. **develop分支**：汇总开发者完成的工作成果，develop分支上的产品可以是缺失功能模块的半成品，但是已有的功能模块不能是半成品。develop分支只能通过与其他分支合并来更新内容，禁止直接在develop分支进行修改。
+1. **feature分支**：当要开发新功能或者试验新功能时，从develop分支创建一个新的feature分支，并在feature分支上进行开发。开发完成后，需要将该feature分支合并到develop分支，最后删除该feature分支。
+1. **release分支**：当develop分支上的项目准备发布时，从develop分支上创建一个新的release分支，新建的release分支只能进行质量测试、bug修复、文档生成等面向发布的任务，不能再添加功能。这一系列发布任务完成后，需要将release分支合并到master分支上，并根据版本号为master分支添加tag，然后将release分支创建以来的修改合并回develop分支，最后删除release分支。
+1. **hotfix分支**：当master分支中的产品出现需要立即修复的bug时，从master分支上创建一个新的hotfix分支，并在hotfix分支上进行bug修复。修复完成后，需要将hotfix分支合并到master分支和develop分支，并为master分支添加新的版本号tag，最后删除hotfix分支。
 ![示例](./images/gitflow工作流.png)
 
-## GitFlow流程示范
+## GitFlow流程概述
 
-完整的GitFlow分支适用于中大项目，这里只用两个分支做示范：master，develop。
+完整的GitFlow分支适用于中大项目，操作起来较为复杂。在一般的小规模项目中，我们对gitflow实施了定制。只保留核心的master和develop分支，便于实践和推广。
 
 下面用两个账号做示范，一个账号Checker是项目的创建者和审核者（对应于左图）,一个用户wangbo是开发人员（对应于右图）
 
 主要步骤如下，其中双箭头=>表示服务器上repo之间的信息流，通过web按钮实现, 单箭头为本地到服务器之间的信息流：
 1. **Init 项目组创建项目**.  Checker/proj. ，由Checker完成，创建项目主仓库Checker/proj，并默认master分支。
-2. **Develop 开发者fork项目并开发**. Checker/proj/develop => wangbo/proj/develop <-> wangbo's proj/develop.
+1. **Develop 开发者fork项目并开发**. Checker/proj/develop => wangbo/proj/develop <-> wangbo's proj/develop.
 
    1. 由wangbo fork主仓库到wangbo对该项目的远程镜像仓wangbo/proj，落在git服务器wangbo帐号下，然后wangbo clone到本地仓wangbo's proj。
+<<<<<<< Updated upstream
    2. 创建develop分支。王博后续的开发都是基于本地的develop和远程的镜像仓协同开发。
    3. wangbo应实时拉去主仓库，并和本地合并，保持最新状态。
 
@@ -94,7 +111,39 @@ GitFlow主要包含了以下分支：
 > 4. `git pull upstream master` 可以代替流程B的步骤 2+3。 `git pull = fetch + merge`
 >
 >此时自己本地的代码就是最新的了，修改完代码后，`重复A流程中的步骤 3-5`
+=======
+   1. 创建develop分支。王博后续的开发都是基于本地的develop和远程的镜像仓协同开发。
+   1. wangbo应实时拉取主仓库，并和本地合并，保持最新状态。
 
+1. **Merge 审核者审核并合并项目**. wangbo/proj/develop => Checker/proj/develop wangbo远程仓ready后. 合并分支，开发者wangbo请求合并自己的远程仓的develop分支到主仓库的develop分支，Checker审核通过
+1. **Release 审核者发布版本**. Checker/proj/develop => Checker/proj/master. 审核者Checker根据需求发布，把主仓库develop merge到master，并根据情况打tag
+
+# GitFlow功能命令指南
+
+## 克隆，开发与合并(Fork, Develop & Merge)
+
+主要步骤：
+1. **Fork**. 在gitweb中，目标项目{REMOTE_REPO}={TARGET_USER}/{PROJECT}上点击fork,会生成自己的项目 {USER}/{PROJECT}. e.g. Checker/proj -> wangbo/proj
+1. **Clone**. `git clone {URL}`.
+1. **Develop**. `git add {FILES}`，`git commit -m "{COMMIT_MESSAGE}"` 进行更新，提交到本地
+1. **Push** `git push origin develop` 推送到自己的远程仓库  wangbo/proj/develop
+1. **PR**. web上打开`Pull Request` 请求, 等待审核。
+1. **Merge**. 审核者Checker会审核你提交的代码，若没问题则接受合并。若有问题，双方在PR面板上交流讨论后，继续改进后续再次提交PR或者开发者说服审核者通过该PR.
+
+当我们睡了一觉起来， 目标仓库(e.g. Checker/proj)可能已经更新，我们要同步最新代码。
+
+## 拉取最新代码(Pull)
+
+1. 确保本地在develop分支
+1. 给远程的上游仓库**Checker/proj**配置一个remote。
+2. 查看远程状态 `git remote -v` 
+3. 配置remote上游. `git remote add {REMOTE_NAME} {REMOTE_REPO}`. e.g：`git remote add team https://xxx.com/Checker/proj.git`
+4. 将远程所有的分支fetch下来 `git fetch team` 
+5. 合并`git merge team` 
+6. 或者`git pull team develop`。 `git pull = fetch + merge`
+>>>>>>> Stashed changes
+
+此时自己本地的代码就是最新的了。功能修改完成后，可继续提交合并请求PR
 
 # GitFlow实战演示
 ### 1.创建项目
