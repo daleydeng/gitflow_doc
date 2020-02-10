@@ -58,7 +58,7 @@ GitFlow主要包含了以下分支：
    3. wangbo应实时拉去主仓库，并和本地合并，保持最新状态。
 
 3. **Merge 审核者审核并合并项目**. wangbo/proj/develop => Checker/proj/develop wangbo远程仓ready后. 合并分支，开发者wangbo请求合并自己的远程仓的develop分支到主仓库的develop分支，Checker审核通过
-4. **Release 审核者发布版本**. Checker/proj/develop -> Checker/proj/master. 审核者Checker根据需求发布，把主仓库develop merge到master，并根据情况打tag
+4. **Release 审核者发布版本**. Checker/proj/develop => Checker/proj/master. 审核者Checker根据需求发布，把主仓库develop merge到master，并根据情况打tag
 
 ### 1.创建项目
 
