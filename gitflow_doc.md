@@ -2,6 +2,7 @@
 # GitFlow项目介绍
 
 为了更有力，更深度，更快速的协作开发。并且更好的进行版本管理和控制项目代码，我们将采用自定义的GitFlow工作流模式。
+![示例](./images/git-flow.png)
 
 ## 术语定义
 - gitweb: 服务器上git的web平台，用于存放代码。如github, 内部的gitea等
@@ -18,14 +19,12 @@
 * [Git基本操作](#Git基本操作)
   * [本地操作](#本地操作)
   * [远程操作](#远程操作)
-  * [Tips](#tips)
 * [GitFlow简介](#GitFlow简介)
   * [分支简介](#分支简介)
   * [GitFlow流程概述](#GitFlow流程概述)
 * [GitFlow功能命令指南](#GitFlow功能命令指南)
 * [GitFlow实战演示](#GitFlow实战演示)
-
-![示例](./images/git-flow.png)
+* [Tips](#tips)
 
 # Git基本操作
 
