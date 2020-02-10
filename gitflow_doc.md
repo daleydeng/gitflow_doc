@@ -8,7 +8,7 @@
 - 箭头信息流表达（=>,->）: 其中双箭头=>表示服务器上repo之间的信息流，通过web按钮实现, 单箭头为本地到服务器之间的信息流
 
 ## 总体原则和指导
-- **干净**。master干净不被污染，必须可运行。开发主要都在develop上完成，不论本地还是远程。develop测试通过以后，将其合并到master.
+- **master干净**。master干净不被污染，必须可运行。开发主要都在develop上完成，不论本地还是远程。develop测试通过以后，将其合并到master.
 - **PR控制**。PR=Pull Request, 合并请求。代码管理的本质是对PR的管理。目标仓库的更改只能通过审核者通过的PR。不能直接更改，保证纯洁性。gitweb上PR面板中可用来审核者和开发者深入交流讨论该PR的细节。鼓励审核者和开发者多交流。
 - **分布开发**。每个开发者各开发各的，通过提交PR实现主仓库的功能更新。
 - **ISSUES建议**。其他人对项目的一些修改意见，但是无开发权限，如管理层人员之类的，可以通过gitweb上该项目的ISSUES面板提出建议，开发者根据情况回应。鼓励多讨论多提建议。
@@ -77,7 +77,7 @@ GitFlow主要包含了以下分支：
 
 下面用两个账号做示范，一个账号Checker是项目的创建者和审核者（对应于左图）,一个用户wangbo是开发人员（对应于右图）
 
-主要步骤如下，：
+主要步骤如下：
 1. **Init 项目组创建项目**.  Checker/proj. ，由Checker完成，创建项目主仓库Checker/proj，并默认master分支。
 1. **Develop 开发者fork项目并开发**. Checker/proj/develop => wangbo/proj/develop <-> wangbo's proj/develop.
 
