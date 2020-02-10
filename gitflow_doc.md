@@ -90,7 +90,7 @@ GitFlow主要包含了以下分支：
 
 # GitFlow功能命令指南
 
-## 贡献代码
+## 向主库贡献代码
 
 贡献代码的主要步骤是克隆(clone)，开发(develop)与合并(merge)，具体如下：
 1. **Fork**. 在gitweb中，目标项目{REMOTE_REPO}={TARGET_USER}/{PROJECT}上点击fork,会生成自己的项目 {USER}/{PROJECT}. e.g. Checker/proj -> wangbo/proj
@@ -102,7 +102,7 @@ GitFlow主要包含了以下分支：
 
 当我们睡了一觉起来， 目标仓库(e.g. Checker/proj)可能已经更新，我们要同步最新代码。
 
-## 更新本地代码
+## 在本地更新代码
 
 更新本地代码主要是拉取操作(pull)，具体如下：
 1. 确保本地在develop分支
