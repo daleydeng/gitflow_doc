@@ -172,6 +172,9 @@ git push repo/test_project master:master
 &emsp;到此就算是一个小的开发流程了，后续开发者需要不断的从develop分支pull最新版本到本地，完成开发后，push到自己fork的远程仓库某分支上，然后PR(请求合并)，大致就是在重复第二三步的操作
 
 # 小贴士Tips
+
+- 作为专业的开发人员，推荐使用英文原版gitea web界面
+- 可以为主库添加watch, 这样主库如果发生更新，能够有消息提醒请及时从主库pull
 - 本地库也开develop分支，这样推送的时候git会匹配分支，将本地的develop推送到远程镜像的develop
 
 - 远程仓库可以在仓库Settings页面中Branches里面设置develop为默认展示分支
