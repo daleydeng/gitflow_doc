@@ -49,7 +49,7 @@ GitFlow主要包含了以下分支：
 
 下面用两个账号做示范，一个账号Checker是项目的创建者和审核者（对应于左图）,一个用户wangbo是开发人员（对应于右图）
 
-主要步骤如下：
+主要步骤如下，其中双箭头=>表示服务器上repo之间的信息流，通过web按钮实现, 单箭头为本地到服务器之间的信息流：
 1. **Init 项目组创建项目**.  Checker/proj. ，由Checker完成，创建项目主仓库Checker/proj，并默认master分支。
 2. **Develop 开发者fork项目并开发**. Checker/proj/develop => wangbo/proj/develop <-> wangbo's proj/develop.
 
