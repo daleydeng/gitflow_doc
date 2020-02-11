@@ -47,7 +47,7 @@
 
 这里只介绍部分操作，更多git的操作参考[廖雪峰的教程](https://www.liaoxuefeng.com/wiki/896043488029600)。适用于单人本地以及**单人本地远程1对1操作**。本地与远程进行同步推拉(Push,Pull)
 
-## 1.1. 本地git命令行操作
+## 1.1.本地git命令行操作
 
 ```shell
 git init #在一个文件夹下初始化git
@@ -61,11 +61,11 @@ git push {REMOTE_NAME} {BRANCH} #将本地当前分支推到远程指定分支
 git merge {BRANCH} #将本地{BRANCH}合并到当前分支
 ```
 
-## 1.2. 本地git GUI操作
+## 1.2.本地git GUI操作
 
 TODO
 
-## 1.2. 远程gitweb图形化操作
+## 1.2.远程gitweb图形化操作
 
 - Fork：开发者将主仓库拉到自己的镜像仓库中。
 - Pull request：简写成PR，开发者在自己的镜像仓发送子分支合并请求，等待审核者审核(Code Review)。
