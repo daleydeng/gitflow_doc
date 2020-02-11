@@ -2,14 +2,32 @@
 # GitFlow项目介绍
 
 为了更有力，更深度，更快速的协作开发。并且更好的进行版本管理和控制项目代码，我们将采用自定义的GitFlow工作流模式。
+完整的GitFlow分支适用于中大项目，操作起来较为复杂。在一般的小规模项目中，我们对gitflow实施了定制。只保留核心的master和develop分支，便于实践和推广。
+流程示例如下：
 ![示例](./images/git-flow.png)
+图中，虚线箭头为跨机器信息流，红箭头表示关键步骤，虚点为镜像分支关系。
 
 ## 术语定义
 - gitweb: 服务器上git的web平台，用于存放代码。如github, 内部的gitea等
 - 箭头信息流表达（=>,->）: 其中双箭头=>表示服务器上repo之间的信息流，通过web按钮实现, 单箭头为本地到服务器之间的信息流
 
+## 主要流程
+主要流程如下：
+1. **Init 项目组创建项目**.  vision1/proj. ，由vision1完成，创建项目主仓库vision1/proj，创建相应的develop分支。
+2. **Develop 开发者fork项目并开发**. vision1/proj/develop => wangbo/proj/develop <-> wangbo's proj/develop.
+
+   1. 由wangbo fork主仓库到wangbo对该项目的远程镜像仓wangbo/proj，落在git服务器wangbo帐号下，然后wangbo clone所有分支到本地仓wangbo's proj。
+
+   2. wangbo后续的开发都是基于本地仓wangbo's proj和wangbo的镜像仓wangbo/proj同步开发。期间可以开发多个特性分支，并定期合并到本地的develop分支。
+   3. wangbo应实时拉取(pull)主仓库vision1/proj，并和本地合并(merge)，保持develop分支最新状态。
+
+3. **Merge 审核者审核并合并项目**. wangbo/proj/develop => vision1/proj/develop 镜像仓wangbo/proj准备好后. wangbo请求合并自己的远程仓的develop分支到主仓库的develop分支，vision1进行审核，决定接受PR或者打回重改。
+4. **Release 审核者发布版本**. vision1/proj/develop => vision1/proj/master. 审核者vision1根据需求发布，把主仓库develop merge到master，并根据情况打tag
+
+后文[演示](#4-gitflow简单示范)部分用两个账号做示范。
+
 ## 总体原则和指导
-- **master干净**。master干净不被污染，必须可运行。开发主要都在develop上完成，不论本地还是远程。develop测试通过以后，将其合并到master.
+- **master干净**。master干净不被污染，必须可运行。开发主要都在develop上完成，不论本地还是远程。主仓库develop测试通过以后，审核者将其合并到master.
 - **PR控制**。PR=Pull Request, 合并请求。代码管理的本质是对PR的管理。目标仓库的更改只能通过审核者通过的PR。不能直接更改，保证纯洁性。审核者只拥有主库的合并请求的权限，并没有主库的代码开发和推送权限。gitweb上PR面板中可用来审核者和开发者深入交流讨论该PR的细节。鼓励审核者和开发者多交流。
 - **分布开发**。每个开发者各开发各的，通过提交PR实现主仓库的功能更新。开发者日常都是在操作自己的镜像库，并及时从主库更新本地的代码。开发到一定阶段，主要功能完成，可以PR合并到主库。
 - **合并冲突本地化**。冲突来自于不一致，当主库被别人更新，自己本地又有更新时。从主库pull的时候就有发生冲突的可能性。在本地解决冲突，解决完和主库同步后，再提交新的修改。创建PR。若没解决冲突，提交的PR是无法被合并到主库的。所以，鼓励开发者从主库多pull, 勤pull，保证一致。不要拖得太久，不然主库和本地差异过大时，本地解决冲突变成一件难事。
@@ -21,8 +39,6 @@
   * [1.1.本地操作](#1-1-本地操作)
   * [1.2.远程操作](#1-2-远程操作)
 * [2.Gitflow简介](#2-gitflow简介)
-  * [2.1.分支简介](#2-1-分支简介)
-  * [2.2.流程概述](#2-2-流程概述)
 * [3.Gitflow功能命令](#3-gitflow功能命令)
 * [4.Gitflow简单示范](#4-gitflow简单示范)
 * [小贴士Tips](#小贴士tips)
@@ -56,8 +72,6 @@ git merge #分支合并
 
 GitFlow工作流定义了一个围绕项目发布的严格分支模型，它为不同的分支分配了明确的角色，并定义分支之间何时以及如何进行交互。[视频简介](https://www.bilibili.com/video/av32573821/)。适用于**多人操作一个共享仓库的情况**，小范围协作。
 
-## 2.1.分支简介
-
 GitFlow主要包含了以下分支：
 1. **master分支**：存储正式发布的产品，master分支上的产品要求随时处于可部署状态。master分支只能通过与其他分支合并请求PR来更新内容，禁止直接在master分支进行修改。
 1. **develop分支**：汇总开发者完成的工作成果，develop分支上的产品可以是缺失功能模块的半成品，但是已有的功能模块不能是半成品。develop分支只能通过与其他分支合并来更新内容，禁止直接在develop分支进行修改。
@@ -65,24 +79,6 @@ GitFlow主要包含了以下分支：
 1. **release分支**：当develop分支上的项目准备发布时，从develop分支上创建一个新的release分支，新建的release分支只能进行质量测试、bug修复、文档生成等面向发布的任务，不能再添加功能。这一系列发布任务完成后，需要将release分支合并到master分支上，并根据版本号为master分支添加tag，然后将release分支创建以来的修改合并回develop分支，最后删除release分支。
 1. **hotfix分支**：当master分支中的产品出现需要立即修复的bug时，从master分支上创建一个新的hotfix分支，并在hotfix分支上进行bug修复。修复完成后，需要将hotfix分支合并到master分支和develop分支，并为master分支添加新的版本号tag，最后删除hotfix分支。
 ![示例](./images/gitflow工作流.png)
-
-## 2.2.流程概述
-
-完整的GitFlow分支适用于中大项目，操作起来较为复杂。在一般的小规模项目中，我们对gitflow实施了定制。只保留核心的master和develop分支，便于实践和推广。
-
-下面[演示](#4-gitflow简单示范)部分用两个账号做示范，一个账号vision1是项目的创建者和审核者（对应于左图）,一个用户wangbo是开发人员（对应于右图）
-
-主要步骤如下：
-1. **Init 项目组创建项目**.  vision1/proj. ，由vision1完成，创建项目主仓库vision1/proj，并默认master分支。
-1. **Develop 开发者fork项目并开发**. vision1/proj/develop => wangbo/proj/develop <-> wangbo's proj/develop.
-
-   1. 由wangbo fork主仓库到wangbo对该项目的远程镜像仓wangbo/proj，落在git服务器wangbo帐号下，然后wangbo clone到本地仓wangbo's proj。
-
-   2. 创建develop分支。wangbo后续的开发都是基于本地的develop和远程的镜像仓协同开发。
-   3. wangbo应实时拉取主仓库，并和本地合并，保持最新状态。
-
-2. **Merge 审核者审核并合并项目**. wangbo/proj/develop => vision1/proj/develop wangbo远程仓ready后. 合并分支，开发者wangbo请求合并自己的远程仓的develop分支到主仓库的develop分支，vision1审核通过
-3. **Release 审核者发布版本**. vision1/proj/develop => vision1/proj/master. 审核者vision1根据需求发布，把主仓库develop merge到master，并根据情况打tag
 
 # 3.Gitflow功能命令
 
@@ -227,6 +223,8 @@ pull下来后，参照第4-7步进行就OK了
 ![zsh主体](./images/zsh_theme.png)
 
 - git相关的配置信息在配置文档里，如remote名字地址，合并信息等，项目相关的.git/config里，全局的在~/.gitconfig. 有时候，直接文本修改git config文件更方便
+
+- 每个项目git初始化是会产生一个默认的master分支
 
 - 本开发者地库也开develop分支，这样推送的时候git会匹配分支，将本地的develop推送到上游仓库的develop
 
