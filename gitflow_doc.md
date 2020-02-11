@@ -261,3 +261,6 @@ pull下来后，参照第4-7步进行就OK了
 - gitweb上可以在仓库Settings页面中Branches里面设置develop为默认展示分支
 
 - gitweb上调试带图片的文档时，要禁用浏览器缓存，否则图片不更新。chrome中F12进入开发者工具，Network中点击Disable cache即可 或 直接使用Ctrl + F5 强制刷新页面，此操作可以直接刷新浏览器缓存
+
+- 对于刚入门者，git的图形客户端(gui)是可以推荐使用的。集成客户端，windows下有gitextensions, TortoiseGit， linux下有git-cola，可以去试用。值得推荐的是git官方自带两个图形小工具gitk和git gui. 一个用来查看提交历史，一个用来写提交message.
+gitk and git-gui are examples of task-oriented tools. Each of them is tailored for a specific purpose (viewing history and creating commits, respectively), and omit the features not necessary for that task.
