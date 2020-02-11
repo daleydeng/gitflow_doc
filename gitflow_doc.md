@@ -47,7 +47,7 @@
 
 这里只介绍部分操作，更多git的操作参考[廖雪峰的教程](https://www.liaoxuefeng.com/wiki/896043488029600)。适用于单人本地以及**单人本地远程1对1操作**。本地与远程进行同步推拉(Push,Pull)
 
-## 1.1.本地操作
+## 1.1. 本地git命令行操作
 
 ```shell
 git init #在一个文件夹下初始化git
@@ -58,15 +58,18 @@ git checkout {BRANCH} #切换到指定分支
 git clone {REPO_URL}#从克隆远程仓库到当前工作路径
 git pull {REMOTE_NAME} {BRANCH} #远程指定分支拉取到本地当前分支
 git push {REMOTE_NAME} {BRANCH} #将本地当前分支推到远程指定分支
-git merge {BRANCH} #将本地{BRANCH}分支合并到本地当前分支
+git merge {BRANCH} #将本地{BRANCH}合并到当前分支
 ```
 
-## 1.2.远程操作
+## 1.2. 本地git GUI操作
 
-在gitweb平台上，该项目远程仓库上的重要操作：
-- Fork：将看中的仓库拉到自己的远程仓库中，由开发者执行
-- Pull request：简写成PR，发送子分支合并请求，等待审核(Code Review)，由开发者执行
-- Merge request ： 同意合并请求, 由审核者执行
+TODO
+
+## 1.2. 远程gitweb图形化操作
+
+- Fork：开发者将主仓库拉到自己的镜像仓库中。
+- Pull request：简写成PR，开发者在自己的镜像仓发送子分支合并请求，等待审核者审核(Code Review)。
+- Merge request ： 审核者在主仓库执行同意合并请求
 
 # 2.Gitflow简介
 
