@@ -258,4 +258,4 @@ pull下来后，参照第4-7步进行就OK了
 
 - gitweb上可以在仓库Settings页面中Branches里面设置develop为默认展示分支
 
-- gitweb上调试带图片的文档时，要禁用浏览器缓存，否则图片不更新。chrome中F12进入开发者工具，Network中点击Disable cache即可
+- gitweb上调试带图片的文档时，要禁用浏览器缓存，否则图片不更新。chrome中F12进入开发者工具，Network中点击Disable cache即可 或 直接使用Ctrl + F5 强制刷新页面，此操作可以直接刷新浏览器缓存
