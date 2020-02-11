@@ -20,12 +20,12 @@
 * [Git基本操作](#git基本操作)
   * [本地操作](#本地操作)
   * [远程操作](#远程操作)
-* [gitflow简介](#gitflow简介)
+* [Gitflow简介](#gitflow简介)
   * [分支简介](#分支简介)
-  * [gitflow流程概述](#gitflow流程概述)
-* [gitflow功能命令指南](#gitflow功能命令指南)
-* [gitflow简单示范](#gitflow简单示范)
-* [小贴士tips](#小贴士tips)
+  * [流程概述](#流程概述)
+* [Gitflow功能命令](#gitflow功能命令)
+* [Gitflow简单示范](#gitflow简单示范)
+* [小贴士Tips](#小贴士tips)
 
 # Git基本操作
 
@@ -50,7 +50,7 @@ git merge #分支合并
 - Pull request：简写成PR，发送子分支合并请求，等待审核(Code Review)，由开发者执行
 - Merge request ： 同意合并请求, 由审核者执行
 
-# gitflow简介
+# Gitflow简介
 
 GitFlow工作流定义了一个围绕项目发布的严格分支模型，它为不同的分支分配了明确的角色，并定义分支之间何时以及如何进行交互。[视频简介](https://www.bilibili.com/video/av32573821/)。适用于**多人操作一个共享仓库的情况**，小范围协作。
 
@@ -64,7 +64,7 @@ GitFlow主要包含了以下分支：
 1. **hotfix分支**：当master分支中的产品出现需要立即修复的bug时，从master分支上创建一个新的hotfix分支，并在hotfix分支上进行bug修复。修复完成后，需要将hotfix分支合并到master分支和develop分支，并为master分支添加新的版本号tag，最后删除hotfix分支。
 ![示例](./images/gitflow工作流.png)
 
-## gitflow流程概述
+## 流程概述
 
 完整的GitFlow分支适用于中大项目，操作起来较为复杂。在一般的小规模项目中，我们对gitflow实施了定制。只保留核心的master和develop分支，便于实践和推广。
 
@@ -82,7 +82,7 @@ GitFlow主要包含了以下分支：
 2. **Merge 审核者审核并合并项目**. wangbo/proj/develop => vision1/proj/develop wangbo远程仓ready后. 合并分支，开发者wangbo请求合并自己的远程仓的develop分支到主仓库的develop分支，vision1审核通过
 3. **Release 审核者发布版本**. vision1/proj/develop => vision1/proj/master. 审核者vision1根据需求发布，把主仓库develop merge到master，并根据情况打tag
 
-# gitflow功能命令指南
+# Gitflow功能命令
 
 ## 向主库贡献代码
 
@@ -109,7 +109,7 @@ GitFlow主要包含了以下分支：
 
 此时自己本地的代码就是最新的了。功能修改完成后，可继续提交合并请求PR
 
-# gitflow简单示范
+# Gitflow简单示范
 
 下面用两个账号做演示，一个叫vision1，一个叫wangbo，vision1负责创建项目并审核，wangbo负责开发并提交审核。
 为了方便观察，以下图中，都将vision1仓库放到屏幕左侧，wangbo的放到右侧。
@@ -217,7 +217,7 @@ git pull proj/wangbo develop:develop
 ```
 pull下来后，参照第4-7步进行就OK了
 
-# 小贴士tips
+# 小贴士Tips
 
 - 作为专业的开发人员，推荐使用英文原版gitea web界面
 - 可以为主库添加watch, 这样主库如果发生更新，能够有消息提醒请及时从主库pull
