@@ -222,19 +222,23 @@ pull下来后，参照第4-7步进行就OK了
 # 小贴士Tips
 
 - 作为专业的开发人员，推荐使用英文原版gitea web界面
-- 可以为主库添加watch, 这样主库如果发生更新，能够有消息提醒请及时从主库pull
-- 本地库也开develop分支，这样推送的时候git会匹配分支，将本地的develop推送到远程镜像的develop
 
-- 远程仓库可以在仓库Settings页面中Branches里面设置develop为默认展示分支
-![示例](./images/web端repo设置默认分支.png)
+- 开发推荐使用zsh, 能够实时显示项目当前所在的分支，ohmyzsh设置漂亮的主题 https://ohmyz.sh/
+![zsh主体](./images/zsh_theme.png)
+
+- git相关的配置信息在配置文档里，如remote名字地址，合并信息等，项目相关的.git/config里，全局的在~/.gitconfig. 有时候，直接文本修改git config文件更方便
+
+- 本开发者地库也开develop分支，这样推送的时候git会匹配分支，将本地的develop推送到上游仓库的develop
 
 - 设置分支上游 git push --set-upstream origin {{REMOTE_BRANCH_NAME}} e.g. 本地分支切换到develop后 git push --set-upstream origin develop, 本地分支与远程分支名称保持一致。
 
 - git stash 合理的使用会简化你的工作。比如git pull的时候要求本地workspace没有临时更改, 但是修改了又没提交怎么办，此时可以git stash保存先藏起来， git pull更新，然后git stash pop再弹出来合并
 
-- 开发者本地最好有个develop分支，推送的时候git会自动匹配名字。当你在develop分支上git push, git会自动推到develop上
+- 可以为主库添加watch, 这样主库如果发生更新，能够有消息提醒请及时从主库pull
+
+- md文档在gitweb上可以直接编辑提交预览，有时候更方便
 
 - 在commit时， 如果message中有类似  "Fixes", "Fixed", "Fix", "Closes", "Closed"， "Close"等字样, 可以直接在push时关闭对应的issue, 例如 git commit -m "Close #1"， 即可关闭#1 issue
 
-- 开发推荐使用zsh, 能够实时显示项目当前所在的分支，ohmyzsh设置漂亮的主题 https://ohmyz.sh/
-![zsh主体](./images/zsh_theme.png)
+- 远程仓库可以在仓库Settings页面中Branches里面设置develop为默认展示分支
+![示例](./images/web端repo设置默认分支.png)
