@@ -7,7 +7,7 @@
 
 流程示例如下：
 
-![流程简图](./images/git-flow.png)
+![定制GitFlow流程简图](./images/git-flow.png)
 
 图中，虚线箭头为跨机器信息流，红箭头表示关键步骤，虚点为镜像分支关系。
 
