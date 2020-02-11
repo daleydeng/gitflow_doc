@@ -42,6 +42,7 @@
 - **合并优先级**。对于开发者而言，合并的操作主要在本地完成。合并的来源有三处，远程主仓库，本地其他特性分支，本地修改。当切换电脑时，还有远程镜像仓库。合并的优先级是先远后近。主仓库 > 镜像仓库 > 本地其他分支 > 本地更改。
 - **合并冲突本地化**。冲突来自于不一致，当主库被别人更新，自己本地又有更新时。从主库pull的时候就有发生冲突的可能性。在本地解决冲突，解决完和主库同步后，再提交新的修改。创建PR。若没解决冲突，提交的PR是无法被合并到主库的。所以，鼓励开发者从主库多pull, 勤pull，保证一致。不要拖得太久，不然主库和本地差异过大时，本地解决冲突变成一件难事。
 - **ISSUES建议**。其他人对项目的一些修改意见，但是无开发权限，如管理层人员的，可以通过gitweb上该项目的ISSUES面板提出建议，开发者根据情况回应。鼓励多讨论多提建议。
+- **提交**。UNIX哲学一次提交只干一件事情，鼓励多次小提交。鼓励开发者讲提交信息(Commit Message)尽可能写清楚，按照国际标准和最佳实践规范写。方便将来能方便的检索和回溯，撤回修改等等操作。
 
 # 目录
 
@@ -73,7 +74,22 @@ git merge {BRANCH} #将本地{BRANCH}合并到当前分支
 
 ## 1.2.本地git GUI操作
 
-TODO
+为方便初学者，编程不熟（文档工走者）如者或windows下的工作者使用方便，各种第三方开发了图形界面(gui)的git客户端
+https://git-scm.com/downloads/guis/
+
+使用各类图形客户端时，最好先了解一下git的基本概念，工作区，缓存区，提交，推拉等等。这样才能更好的使用和理解gui客户端。
+
+git官方提供gitk和git gui两个图形客户端。一个用来查看历史，一个用来写提交信息(Commit Message).非常方便，推荐试用。
+
+经过筛选，windows下比较好用的有
+
+- TortoiseGit
+- gitextensisons
+
+linux下有：
+- git-cola
+
+赶快上手吧！
 
 ## 1.2.远程gitweb图形化操作
 
@@ -262,5 +278,4 @@ pull下来后，参照第4-7步进行就OK了
 
 - gitweb上调试带图片的文档时，要禁用浏览器缓存，否则图片不更新。chrome中F12进入开发者工具，Network中点击Disable cache即可 或 直接使用Ctrl + F5 强制刷新页面，此操作可以直接刷新浏览器缓存
 
-- 对于刚入门者，git的图形客户端(gui)是可以推荐使用的。集成客户端，windows下有gitextensions, TortoiseGit， linux下有git-cola，可以去试用。值得推荐的是git官方自带两个图形小工具gitk和git gui. 一个用来查看提交历史，一个用来写提交message.
-gitk and git-gui are examples of task-oriented tools. Each of them is tailored for a specific purpose (viewing history and creating commits, respectively), and omit the features not necessary for that task.
+- 对于刚入门者，git的图形客户端(gui)是可以推荐使用的,有助于快速了解有哪些功能和对应后台的命令。
