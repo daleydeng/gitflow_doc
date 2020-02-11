@@ -114,7 +114,7 @@ wangbo更新本地代码主要是拉取操作(pull)，具体如下：
 2. 给远程的上游仓库vision1/proj配置一个remote。
 3. 将远程所有的分支fetch下来 `git fetch team`
 4. 合并`git merge team`
-5. 或者`git pull team develop`。 `git pull = fetch + merge`。若初始化合适,develop可省略，直接`git pull team`
+5. 或者`git pull team develop`。git pull = fetch + merge, 若初始化合适,develop可省略，直接`git pull team`
 
 此时自己本地的代码就是最新的了。功能修改完成后，可继续提交合并请求PR
 
@@ -137,23 +137,23 @@ wangbo更新本地代码主要是拉取操作(pull)，具体如下：
 
 ```shell
 #初始化一个仓库（如果是git clone就不必初始化，git clone会自动帮你初始化）
-git init
+vision1:proj> git init
 #生成了readme.txt文件，并提交到git中，因为没有分支，git会默认帮你创建一个master分支
-touch readme.txt
-git add readme.txt      #这一步会添加r
-git commit -m "这是第一次提交，会默认创建master分支"
+vision1:proj(master)> touch readme.txt
+vision1:proj(master)> git add readme.txt      #这一步会添加r
+vision1:proj(master)> git commit -m "这是第一次提交，会默认提交到master分支"
 #在新生成的master分支上建一个develop分支
-git branch develop
+vision1:proj(master)> git branch develop
 #从master分支切换到develop分支
-git checkout develop
+vision1:proj(master)> git checkout develop # 或者直接git checkout -b develop
 #在develop分支上开发，这里生成了develop.txt，并提交到了develop分支
-touch develop.txt
-git add develop.txt
-git commit -m "基于master分支生成了develop分支，并添加了develop.txt"
+vision1:proj(develop)> touch develop.txt
+vision1:proj(develop)> git add develop.txt
+vision1:proj(develop)> git commit -m "基于master分支生成了develop分支，并添加了develop.txt"
 #添加vision1的远程仓库，并给他一个别名为proj
-git remote add proj https://git.qingtong123.com/vision1/proj.git
+vision1:proj(develop)> git remote add origin https://git.qingtong123.com/vision1/proj.git
 #将本地仓库推送到远程仓库，这里-all表示所有分支
-git push proj -all
+vision1:proj(develop)> git push origin -all #或者git push
 ```
 
 ![示例](./images/vision1_push_success.png)
@@ -168,7 +168,7 @@ wangbo从vision1的仓库fork过来项目
 wangbo从自己的远程仓库clone到本地仓库
 
 ```shell
-git clone -b develop https://git.qingtong123.com/wangbo/proj.git 
+wangbo> git clone -b develop https://git.qingtong123.com/wangbo/proj.git 
 ```
 
 这里"-b develop"用来指定clone仓库中的develop分支，如果不加，会默认clone master分支
@@ -179,11 +179,12 @@ wangbo在自己的本地仓库完成开发,并提交到develop分支
 
 ```shell
 #clone会把proj下面所有文件拷贝到本地，proj文件夹也包括，而git只管理proj下的内容，所以要进proj文件夹操作
-cd proj
+wangbo> cd proj
+wangbo:proj(master)> git checkout develop
 #开发内容并提交到develop分支
-touch wangbo.txt
-git add wangbo.txt
-git commit -m "在develop分支下开发了wangbo.txt"
+wangbo:proj(develop)> touch wangbo.txt
+wangbo:proj(develop)> git add wangbo.txt
+wangbo:proj(develop)> git commit -m "在develop分支下开发了wangbo.txt"
 
 ```
 
@@ -193,7 +194,7 @@ git commit -m "在develop分支下开发了wangbo.txt"
 
 ```shell
 #将本地develop分支push到远程仓库的develop，这里第一个develop指本地分支，第二个指远程分支
-git push origin develop:develop
+wangbo:proj(develop)> git push origin develop:develop # 直接git push
 ```
 
 push过去后如图
@@ -224,7 +225,7 @@ vision1收到合并请求的消息，审核后通过
 
 另外，如果开发者wangbo有两台机器，并在两台机器上都做开发，有一台机器上的代码版本落后于另一台，那么在版本落后的机器上开发时就需要通过git服务器将最新的代码pull到落后机器本地仓库，如下：
 ```shell
-git pull proj/wangbo develop:develop
+wangbo:proj(develop)> git pull {REPO_URL}/proj/wangbo develop:develop # 配置好上游以后可直接git pull
 ```
 pull下来后，参照第4-7步进行就OK了
 
