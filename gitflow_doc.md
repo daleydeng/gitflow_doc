@@ -167,7 +167,7 @@ wangbo更新本地代码主要是拉取操作(pull)，具体如下：
 vision1:proj> git init
 #生成了readme.txt文件，并提交到git中，因为没有分支，git会默认帮你创建一个master分支
 vision1:proj(master)> touch readme.txt
-vision1:proj(master)> git add readme.txt      #这一步会添加r
+vision1:proj(master)> git add readme.txt
 vision1:proj(master)> git commit -m "这是第一次提交，会默认提交到master分支"
 #在新生成的master分支上建一个develop分支
 vision1:proj(master)> git branch develop
