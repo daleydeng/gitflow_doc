@@ -51,14 +51,14 @@
 
 ```shell
 git init #在一个文件夹下初始化git
-git add #将更新过的文件添加到git缓存中
-git commit #将添加到缓存中的更新提交到分支中
-git branch #在当前分支创建新的分支
-git checkout #切换到指定分支
-git clone #从某个远程网站克隆一个项目到当前工作路径，url指远程仓库的地址
-git pull #远程拉取镜像,remote指远程仓库名，branch指要下载的分支名
-git push #将本地分支上传到远程分支
-git merge #分支合并
+git add {FILES} #将更新过的文件添加到git缓存中
+git commit -m {COMMIT_MESSAGE}#将添加到缓存中的更新提交到分支中
+git branch {BRANCH} #在当前分支创建新的分支
+git checkout {BRANCH} #切换到指定分支
+git clone {REPO_URL}#从克隆远程仓库到当前工作路径
+git pull {REMOTE_NAME} {BRANCH} #远程指定分支拉取到本地当前分支
+git push {REMOTE_NAME} {BRANCH} #将本地当前分支推到远程指定分支
+git merge {BRANCH} #将本地{BRANCH}分支合并到本地当前分支
 ```
 
 ## 1.2.远程操作
@@ -238,5 +238,4 @@ pull下来后，参照第4-7步进行就OK了
 
 - 在commit时， 如果message中有类似  "Fixes", "Fixed", "Fix", "Closes", "Closed"， "Close"等字样, 可以直接在push时关闭对应的issue, 例如 git commit -m "Close #1"， 即可关闭#1 issue
 
-- 远程仓库可以在仓库Settings页面中Branches里面设置develop为默认展示分支
-![示例](./images/web端repo设置默认分支.png)
+- gitweb上可以在仓库Settings页面中Branches里面设置develop为默认展示分支
