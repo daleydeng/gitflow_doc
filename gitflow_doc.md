@@ -277,3 +277,5 @@ pull下来后，参照第4-7步进行就OK了
 - gitweb上调试带图片的文档时，要禁用浏览器缓存，否则图片不更新。chrome中F12进入开发者工具，Network中点击Disable cache即可 或 直接使用Ctrl + F5 强制刷新页面，此操作可以直接刷新浏览器缓存
 
 - 对于刚入门者，git的图形客户端(gui)是可以推荐使用的,有助于快速了解有哪些功能和对应后台的命令。
+
+- 在git网页端，repo界面，查看commit历史时，可以点击 commit graph 查看整个branch的提交图
