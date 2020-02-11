@@ -1,5 +1,6 @@
 
-# GitFlow项目介绍
+# GitFlow筑巢引凤项目
+# 项目介绍
 
 为了更有力，更深度，更快速的协作开发，并且更好的进行版本管理和控制项目代码，我们将采用自定义的Gitflow-Forking工作流模式。
 
@@ -7,7 +8,7 @@
 
 流程示例如下：
 
-![流程简图](./images/git-flow.png)
+![定制GitFlow流程简图](./images/git-flow.png)
 
 图中，虚线箭头为跨机器信息流，红箭头表示关键步骤，虚点为镜像分支关系。
 
@@ -177,7 +178,7 @@ vision1:proj(master)> git checkout develop # 或者直接git checkout -b develop
 vision1:proj(develop)> touch develop.txt
 vision1:proj(develop)> git add develop.txt
 vision1:proj(develop)> git commit -m "基于master分支生成了develop分支，并添加了develop.txt"
-#添加vision1的远程仓库，并给他一个别名为proj
+#添加vision1的远程仓库地址（地址在仓库代码页面），并给他取别名为vision1
 vision1:proj(develop)> git remote add origin https://git.qingtong123.com/vision1/proj.git
 #将本地仓库推送到远程仓库，这里-all表示所有分支
 vision1:proj(develop)> git push origin -all #或者git push
