@@ -85,6 +85,7 @@ git官方提供gitk和git gui两个图形客户端。一个用来查看历史，
 
 - TortoiseGit
 - gitextensisons
+![示例](./images/git_gui_Git_Extensions.png)
 
 linux下有：
 - git-cola
