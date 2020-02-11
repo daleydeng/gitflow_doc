@@ -191,7 +191,7 @@ push过去后如图
 
 ![示例](./images/wangbo_push_success.png)
 
-## 4.6.Pr
+## 4.6.Pull Requests(PR)
 
 wangbo在自己仓库中申请将自己的develop分支合并到主仓库
 
