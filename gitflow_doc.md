@@ -64,7 +64,7 @@
 
 ## 1.1.本地git命令行操作
 
-```shell
+```sh
 git init #在一个文件夹下初始化git
 git add {FILES} #将更新过的文件添加到git缓存中
 git commit -m {COMMIT_MESSAGE} #将添加到缓存中的更新提交到分支中
@@ -89,6 +89,7 @@ git官方提供gitk和git gui两个图形客户端。一个用来查看历史，
 
 - TortoiseGit
 - gitextensisons
+  
 ![示例](./images/git_gui_Git_Extensions.png)
 
 linux下有：
@@ -161,7 +162,7 @@ wangbo更新本地代码主要是拉取操作(pull)，具体如下：
 
 此时，远程仓库并没有内容，vision1在本地创建仓库，添加内容，提交生成第一个分支master,并在master分支下创建了子分支develop，并添加提交了属于子分支的内容（develop.txt）,代码如下:
 
-```shell
+```sh
 #初始化一个仓库（如果是git clone就不必初始化，git clone会自动帮你初始化）
 vision1:proj> git init
 #生成了readme.txt文件，并提交到git中，因为没有分支，git会默认帮你创建一个master分支
@@ -187,6 +188,7 @@ vision1:proj(develop)> git push origin -all #或者git push
 ## 4.2.Fork
 
 wangbo从vision1的仓库fork过来项目
+
 ![示例](./images/wangbo_fork.png)
 
 ## 4.3.Clone
@@ -203,9 +205,8 @@ wangbo> git clone -b develop https://git.qingtong123.com/wangbo/proj.git
 
 wangbo在自己的本地仓库完成开发,并提交到develop分支
 
-```shell
+```sh
 #clone会把proj下面所有文件拷贝到本地，proj文件夹也包括，而git只管理proj下的内容，所以要进proj文件夹操作
-wangbo> cd proj
 wangbo:proj(master)> git checkout develop
 #开发内容并提交到develop分支
 wangbo:proj(develop)> touch wangbo.txt
@@ -218,7 +219,7 @@ wangbo:proj(develop)> git commit -m "在develop分支下开发了wangbo.txt"
 
 这时wangbo本地仓库中的develop开发完毕，要push到远程仓库
 
-```shell
+```sh
 #将本地develop分支push到远程仓库的develop，这里第一个develop指本地分支，第二个指远程分支
 wangbo:proj(develop)> git push origin develop:develop # 直接git push
 ```
