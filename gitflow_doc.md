@@ -23,7 +23,9 @@
 - PR: Pull Requests, 一个仓库向另一个仓库提交的合并请求
 
 ## 主要流程
+
 主要流程如下：
+
 1. **Init 项目组创建项目**.  vision1/proj. ，由vision1完成，创建项目主仓库vision1/proj，创建相应的develop分支。
 2. **Develop 开发者fork项目并开发**. vision1/proj/develop => wangbo/proj/develop <-> wangbo's proj/develop.
 
@@ -38,6 +40,7 @@
 后文[演示](#4-gitflow简单示范)部分用两个账号做示范。
 
 ## 总体原则和指导
+
 - **协作流程匹配**. 这是最为重要的选择。对于小型的稍自由的开发项目(10人以内)，采用Gitflow-Simple模式，即单个远程共享仓多分支的模式（如master,develop,feature/x,feature/y)。适用于小型的库，文档开发等。对于综合型大型项目而言，采用本文重点介绍的以Fork为主的，定制的Gitflow-Forking工作流分布式开发。适用于如天达，平湖，中外运等综合项目级别的集成开发。
 - **master干净**. master干净不被污染，必须可运行。开发主要都在develop上完成，不论本地还是远程。主仓库develop测试通过以后，审核者将其合并到master. 主仓库master一定是干净的。本地和镜像仓的master可以适时从主库合并master，来同步一个可用版本。
 - **PR控制**。PR=Pull Request, 合并请求。代码管理的本质是对PR的管理。目标仓库的更改只能通过审核者通过的PR。不能直接更改，保证纯洁性。审核者只拥有主库的合并请求的权限，并没有主库的代码开发和推送权限。gitweb上PR面板中可用来审核者和开发者深入交流讨论该PR的细节。鼓励审核者和开发者多交流。
@@ -104,6 +107,7 @@ linux下有：
 GitFlow工作流定义了一个围绕项目发布的严格分支模型，它为不同的分支分配了明确的角色，并定义分支之间何时以及如何进行交互。[视频简介](https://www.bilibili.com/video/av32573821/)。适用于**多人操作一个共享仓库的情况**，小范围协作。
 
 GitFlow主要包含了以下分支：
+
 1. **master分支**：存储正式发布的产品，master分支上的产品要求随时处于可部署状态。master分支只能通过与其他分支合并请求PR来更新内容，禁止直接在master分支进行修改。
 1. **develop分支**：汇总开发者完成的工作成果，develop分支上的产品可以是缺失功能模块的半成品，但是已有的功能模块不能是半成品。develop分支只能通过与其他分支合并来更新内容，禁止直接在develop分支进行修改。
 1. **feature分支**：当要开发新功能或者试验新功能时，从develop分支创建一个新的feature分支，并在feature分支上进行开发。开发完成后，需要将该feature分支合并到develop分支，最后删除该feature分支。
@@ -118,6 +122,7 @@ GitFlow主要包含了以下分支：
 ## 3.1.向主库贡献代码
 
 贡献代码的主要步骤是克隆(clone)，开发(develop)与合并(merge)，具体如下：
+
 1. **Fork**. vision1/proj => wangbo/proj 在gitweb中，目标项目{REMOTE_REPO}={TARGET_USER}/{PROJECT}上点击fork,会生成自己的项目 {USER}/{PROJECT}. 
 2. **Clone**.  wangbo/proj -> wangbo's proj 开发者将镜像仓clone到本地 `git clone {REPO_URL}`. 且初始化的分支主仓库上游`git remote add team {ADDR}/vision1/proj.git`. 查看远程状态 `git remote -v`. team为主库对应的remote名称
 3. **Develop**. wangbo进行更新，提交到本地. `git add {FILES}`，`git commit -m "{COMMIT_MESSAGE}"` 
@@ -130,6 +135,7 @@ GitFlow主要包含了以下分支：
 ## 3.2.在本地更新代码
 
 wangbo更新本地代码主要是拉取操作(pull)，具体如下：
+
 1. 确保本地在develop分支
 2. 给远程的上游仓库vision1/proj配置一个remote。
 3. 将远程所有的分支fetch下来 `git fetch team`
