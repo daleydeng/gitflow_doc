@@ -7,7 +7,7 @@
 
 流程示例如下：
 
-![示例](./images/git-flow.png)
+![流程简图](./images/git-flow.png)
 
 图中，虚线箭头为跨机器信息流，红箭头表示关键步骤，虚点为镜像分支关系。
 
@@ -90,7 +90,7 @@ git官方提供gitk和git gui两个图形客户端。一个用来查看历史，
 - TortoiseGit
 - gitextensisons
   
-![示例](./images/git_gui_Git_Extensions.png)
+![GitExtensions界面](./images/git_gui_Git_Extensions.png)
 
 linux下有：
 - git-cola
@@ -114,7 +114,7 @@ GitFlow主要包含了以下分支：
 1. **feature分支**：当要开发新功能或者试验新功能时，从develop分支创建一个新的feature分支，并在feature分支上进行开发。开发完成后，需要将该feature分支合并到develop分支，最后删除该feature分支。
 1. **release分支**：当develop分支上的项目准备发布时，从develop分支上创一个新的release分支，新建的release分支只能进行质量测试、bug修复、文档生成等面向发布的任务，不能再添加功能。这一系列发布任务完成后，需要将release分支合并到master分支上，并根据版本号为master分支添加tag，然后将release分支创建以来的修改合并回develop分支，最后删除release分支。
 1. **hotfix分支**：当master分支中的产品出现需要立即修复的bug时，从master分支上创建一个新的hotfix分支，并在hotfix分支上进行bug修复。修复完成后，需要将hotfix分支合并到master分支和develop分支，并为master分支添加新的版本号tag，最后删除hotfix分支。
-![示例](./images/gitflow工作流.png)
+![Gitflow时间线](./images/gitflow工作流.png)
 
 # 3.Gitflow功能命令集
 
@@ -156,9 +156,9 @@ wangbo更新本地代码主要是拉取操作(pull)，具体如下：
 
 由vision1创建主仓库
 
-![示例](./images/vision1_init.png)
+![vision1创建仓库](./images/vision1_init.png)
 
-![示例](./images/vision1_init_success.png)
+![vision1创建成功](./images/vision1_init_success.png)
 
 此时，远程仓库并没有内容，vision1在本地创建仓库，添加内容，提交生成第一个分支master,并在master分支下创建了子分支develop，并添加提交了属于子分支的内容（develop.txt）,代码如下:
 
@@ -183,13 +183,14 @@ vision1:proj(develop)> git remote add origin https://git.qingtong123.com/vision1
 vision1:proj(develop)> git push origin -all #或者git push
 ```
 
-![示例](./images/vision1_push_success.png)
+![vision1推送成功](./images/vision1_push_success.png)
 
 ## 4.2.Fork
 
 wangbo从vision1的仓库fork过来项目
 
-![示例](./images/wangbo_fork.png)
+![wangbo fork操作](./images/wangbo_fork.png)
+![wangbo fork成功](./images/wangbo_fork_success.png)
 
 ## 4.3.Clone
 
@@ -226,25 +227,25 @@ wangbo:proj(develop)> git push origin develop:develop # 直接git push
 
 push过去后如图
 
-![示例](./images/wangbo_push_success.png)
+![wangbo推送成功](./images/wangbo_push_success.png)
 
 ## 4.6.Pull Request(PR)
 
 wangbo在自己仓库中申请将自己的develop分支合并到主仓库
 
-![示例](./images/wangbo_pr1.png)
+![wangbo创建PR](./images/wangbo_pr1.png)
 
-![示例](./images/wangbo_pr2.png)
+![wangbo指定PR目标分支](./images/wangbo_pr2.png)
 
-![示例](./images/wangbo_pr3.png)
+![wangbo撰写PR信息](./images/wangbo_pr3.png)
 
 ## 4.7.Merge
 
 vision1收到合并请求的消息，审核后通过
 
-![示例](./images/vision1_merge1.png)
+![vision1收到wangbo的PR](./images/vision1_merge1.png)
 
-![示例](./images/vision1_merge2.png)
+![vision1接受合并](./images/vision1_merge2.png)
 
 ## 4.8.剩下的工作
 
@@ -263,7 +264,7 @@ pull下来后，参照第4-7步进行就OK了
 - 作为专业的开发人员，推荐使用英文原版gitea web界面
   
 - 开发推荐使用zsh, 能够实时显示项目当前所在的分支，ohmyzsh设置漂亮的主题 https://ohmyz.sh/
-![zsh主体](./images/zsh_theme.png)
+![zsh主题](./images/zsh_theme.png)
 
 - git相关的配置信息在配置文档里，如remote名字地址，合并信息等，项目相关的.git/config里，全局的在~/.gitconfig. 有时候，直接文本修改git config文件更方便
   
