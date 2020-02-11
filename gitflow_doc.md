@@ -17,14 +17,14 @@
 
 # 目录
 
-* [1.Git基本操作](#1.git基本操作)
-  * [1.1.本地操作](#1.1.本地操作)
-  * [1.2.远程操作](#1.2.远程操作)
-* [Gitflow简介](#gitflow简介)
-  * [分支简介](#分支简介)
-  * [流程概述](#流程概述)
-* [Gitflow功能命令](#gitflow功能命令)
-* [Gitflow简单示范](#gitflow简单示范)
+* [1.Git基本操作](#1-git基本操作)
+  * [1.1.本地操作](#1-1-本地操作)
+  * [1.2.远程操作](#1-2-远程操作)
+* [2.Gitflow简介](#2-gitflow简介)
+  * [2.1.分支简介](#2-1-分支简介)
+  * [2.2.流程概述](#2-2-流程概述)
+* [3.Gitflow功能命令](#3-gitflow功能命令)
+* [4.Gitflow简单示范](#4-gitflow简单示范)
 * [小贴士Tips](#小贴士tips)
 
 # 1.Git基本操作
@@ -32,6 +32,7 @@
 这里只介绍部分操作，更多git的操作参考[廖雪峰的教程](https://www.liaoxuefeng.com/wiki/896043488029600)。适用于单人本地以及**单人本地远程1对1操作**。本地与远程进行同步推拉(Push,Pull)
 
 ## 1.1.本地操作
+
 ```shell
 git init #在一个文件夹下初始化git
 git add #将更新过的文件添加到git缓存中
@@ -45,16 +46,17 @@ git merge #分支合并
 ```
 
 ## 1.2.远程操作
+
 在gitweb平台上，该项目远程仓库上的重要操作：
 - Fork：将看中的仓库拉到自己的远程仓库中，由开发者执行
 - Pull request：简写成PR，发送子分支合并请求，等待审核(Code Review)，由开发者执行
 - Merge request ： 同意合并请求, 由审核者执行
 
-# Gitflow简介
+# 2.Gitflow简介
 
 GitFlow工作流定义了一个围绕项目发布的严格分支模型，它为不同的分支分配了明确的角色，并定义分支之间何时以及如何进行交互。[视频简介](https://www.bilibili.com/video/av32573821/)。适用于**多人操作一个共享仓库的情况**，小范围协作。
 
-## 分支简介
+## 2.1.分支简介
 
 GitFlow主要包含了以下分支：
 1. **master分支**：存储正式发布的产品，master分支上的产品要求随时处于可部署状态。master分支只能通过与其他分支合并请求PR来更新内容，禁止直接在master分支进行修改。
@@ -64,7 +66,7 @@ GitFlow主要包含了以下分支：
 1. **hotfix分支**：当master分支中的产品出现需要立即修复的bug时，从master分支上创建一个新的hotfix分支，并在hotfix分支上进行bug修复。修复完成后，需要将hotfix分支合并到master分支和develop分支，并为master分支添加新的版本号tag，最后删除hotfix分支。
 ![示例](./images/gitflow工作流.png)
 
-## 流程概述
+## 2.2.流程概述
 
 完整的GitFlow分支适用于中大项目，操作起来较为复杂。在一般的小规模项目中，我们对gitflow实施了定制。只保留核心的master和develop分支，便于实践和推广。
 
@@ -82,9 +84,9 @@ GitFlow主要包含了以下分支：
 2. **Merge 审核者审核并合并项目**. wangbo/proj/develop => vision1/proj/develop wangbo远程仓ready后. 合并分支，开发者wangbo请求合并自己的远程仓的develop分支到主仓库的develop分支，vision1审核通过
 3. **Release 审核者发布版本**. vision1/proj/develop => vision1/proj/master. 审核者vision1根据需求发布，把主仓库develop merge到master，并根据情况打tag
 
-# Gitflow功能命令
+# 3.Gitflow功能命令
 
-## 向主库贡献代码
+## 3.1.向主库贡献代码
 
 贡献代码的主要步骤是克隆(clone)，开发(develop)与合并(merge)，具体如下：
 1. **Fork**. 在gitweb中，目标项目{REMOTE_REPO}={TARGET_USER}/{PROJECT}上点击fork,会生成自己的项目 {USER}/{PROJECT}. e.g. vision1/proj => wangbo/proj
@@ -96,7 +98,7 @@ GitFlow主要包含了以下分支：
 
 当我们睡了一觉起来， 目标仓库(e.g. vision1/proj)可能已经更新，我们要同步最新代码。
 
-## 在本地更新代码
+## 3.2.在本地更新代码
 
 更新本地代码主要是拉取操作(pull)，具体如下：
 1. 确保本地在develop分支
@@ -109,12 +111,12 @@ GitFlow主要包含了以下分支：
 
 此时自己本地的代码就是最新的了。功能修改完成后，可继续提交合并请求PR
 
-# Gitflow简单示范
+# 4.Gitflow简单示范
 
 下面用两个账号做演示，一个叫vision1，一个叫wangbo，vision1负责创建项目并审核，wangbo负责开发并提交审核。
 为了方便观察，以下图中，都将vision1仓库放到屏幕左侧，wangbo的放到右侧。
 
-## 1.创建主仓库
+## 4.1.创建主仓库
 
 由vision1创建主仓库
 
@@ -147,12 +149,12 @@ git push proj -all
 
 ![示例](./images/vision1_push_success.png)
 
-## 2.Fork
+## 4.2.Fork
 
 wangbo从vision1的仓库fork过来项目
 ![示例](./images/wangbo_fork.png)
 
-## 3.Clone
+## 4.3.Clone
 
 wangbo从自己的远程仓库clone到本地仓库
 
@@ -162,7 +164,7 @@ git clone -b develop https://git.qingtong123.com/wangbo/proj.git
 
 这里"-b develop"用来指定clone仓库中的develop分支，如果不加，会默认clone master分支
 
-## 4.Develop
+## 4.4.Develop
 
 wangbo在自己的本地仓库完成开发,并提交到develop分支
 
@@ -176,7 +178,7 @@ git commit -m "在develop分支下开发了wangbo.txt"
 
 ```
 
-## 5.Push
+## 4.5.Push
 
 这时wangbo本地仓库中的develop开发完毕，要push到远程仓库
 
@@ -189,7 +191,7 @@ push过去后如图
 
 ![示例](./images/wangbo_push_success.png)
 
-## 6.Pr
+## 4.6.Pr
 
 wangbo在自己仓库中申请将自己的develop分支合并到主仓库
 
@@ -199,7 +201,7 @@ wangbo在自己仓库中申请将自己的develop分支合并到主仓库
 
 ![示例](./images/wangbo_pr3.png)
 
-## 7.Merge
+## 4.7.Merge
 
 vision1收到合并请求的消息，审核后通过
 
@@ -207,7 +209,7 @@ vision1收到合并请求的消息，审核后通过
 
 ![示例](./images/vision1_merge2.png)
 
-## 8.剩下的工作
+## 4.8.剩下的工作
 
 以上就完成了一次开发，后面的工作就是重复第4-7步，当然开发过程中wangbo也可以像第1步中vision1创建develop分支那样创建自己的分支feature，并在新的分支上执行4-7（新的分支也要同步到远程仓库）
 
