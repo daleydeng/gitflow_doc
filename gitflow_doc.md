@@ -105,7 +105,7 @@ GitFlow主要包含了以下分支：
 1. **master分支**：存储正式发布的产品，master分支上的产品要求随时处于可部署状态。master分支只能通过与其他分支合并请求PR来更新内容，禁止直接在master分支进行修改。
 1. **develop分支**：汇总开发者完成的工作成果，develop分支上的产品可以是缺失功能模块的半成品，但是已有的功能模块不能是半成品。develop分支只能通过与其他分支合并来更新内容，禁止直接在develop分支进行修改。
 1. **feature分支**：当要开发新功能或者试验新功能时，从develop分支创建一个新的feature分支，并在feature分支上进行开发。开发完成后，需要将该feature分支合并到develop分支，最后删除该feature分支。
-1. **release分支**：当develop分支上的项目准备发布时，从develop分支上创建一个新的release分支，新建的release分支只能进行质量测试、bug修复、文档生成等面向发布的任务，不能再添加功能。这一系列发布任务完成后，需要将release分支合并到master分支上，并根据版本号为master分支添加tag，然后将release分支创建以来的修改合并回develop分支，最后删除release分支。
+1. **release分支**：当develop分支上的项目准备发布时，从develop分支上创一个新的release分支，新建的release分支只能进行质量测试、bug修复、文档生成等面向发布的任务，不能再添加功能。这一系列发布任务完成后，需要将release分支合并到master分支上，并根据版本号为master分支添加tag，然后将release分支创建以来的修改合并回develop分支，最后删除release分支。
 1. **hotfix分支**：当master分支中的产品出现需要立即修复的bug时，从master分支上创建一个新的hotfix分支，并在hotfix分支上进行bug修复。修复完成后，需要将hotfix分支合并到master分支和develop分支，并为master分支添加新的版本号tag，最后删除hotfix分支。
 ![示例](./images/gitflow工作流.png)
 
@@ -132,7 +132,7 @@ wangbo更新本地代码主要是拉取操作(pull)，具体如下：
 2. 给远程的上游仓库vision1/proj配置一个remote。
 3. 将远程所有的分支fetch下来 `git fetch team`
 4. 合并`git merge team`
-5. 或者`git pull team develop`。git pull = fetch + merge, 若初始化是git配置合适,develop可省略，直接`git pull team`
+5. 或者`git pull team develop`。git pull = fetch + merge, 若初始化时git配置合适,develop可省略，直接`git pull team`
 
 此时自己本地的代码就是最新的了。功能修改完成后，可继续提交合并请求PR
 
