@@ -178,7 +178,7 @@ vision1:proj(master)> git checkout develop # 或者直接git checkout -b develop
 vision1:proj(develop)> touch develop.txt
 vision1:proj(develop)> git add develop.txt
 vision1:proj(develop)> git commit -m "基于master分支生成了develop分支，并添加了develop.txt"
-#添加vision1的远程仓库，并给他一个别名为proj
+#添加vision1的远程仓库地址（地址在仓库代码页面），并给他取别名为vision1
 vision1:proj(develop)> git remote add origin https://git.qingtong123.com/vision1/proj.git
 #将本地仓库推送到远程仓库，这里-all表示所有分支
 vision1:proj(develop)> git push origin -all #或者git push
