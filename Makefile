@@ -1,6 +1,7 @@
 template := eisvogel.latex
 font := SourceHanSansCN-Regular
 highlight_style := pygments
+
 all: doc
 
 doc: gitflow_doc.pdf
