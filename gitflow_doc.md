@@ -2,7 +2,9 @@
 # GitFlow项目介绍
 
 为了更有力，更深度，更快速的协作开发。并且更好的进行版本管理和控制项目代码，我们将采用自定义的GitFlow工作流模式。
+
 完整的GitFlow分支适用于中大项目，操作起来较为复杂。在一般的小规模项目中，我们对gitflow实施了定制。只保留核心的master和develop分支，便于实践和推广。
+
 流程示例如下：
 ![示例](./images/git-flow.png)
 图中，虚线箭头为跨机器信息流，红箭头表示关键步骤，虚点为镜像分支关系。
@@ -39,7 +41,7 @@
 - **分布开发**。每个开发者各开发各的，通过提交PR实现主仓库的功能更新。开发者日常都是在操作自己的镜像库，并及时从主库更新本地的代码。开发到一定阶段，主要功能完成，可以PR合并到主库。
 - **合并优先级**。对于开发者而言，合并的操作主要在本地完成。合并的来源有三处，远程主仓库，本地其他特性分支，本地修改。当切换电脑时，还有远程镜像仓库。合并的优先级是先远后近。主仓库 > 镜像仓库 > 本地其他分支 > 本地更改。
 - **合并冲突本地化**。冲突来自于不一致，当主库被别人更新，自己本地又有更新时。从主库pull的时候就有发生冲突的可能性。在本地解决冲突，解决完和主库同步后，再提交新的修改。创建PR。若没解决冲突，提交的PR是无法被合并到主库的。所以，鼓励开发者从主库多pull, 勤pull，保证一致。不要拖得太久，不然主库和本地差异过大时，本地解决冲突变成一件难事。
-- **ISSUES建议**。其他人对项目的一些修改意见，但是无开发权限，如管理层人员之类的，可以通过gitweb上该项目的ISSUES面板提出建议，开发者根据情况回应。鼓励多讨论多提建议。
+- **ISSUES建议**。其他人对项目的一些修改意见，但是无开发权限，如管理层人员的，可以通过gitweb上该项目的ISSUES面板提出建议，开发者根据情况回应。鼓励多讨论多提建议。
 
 # 目录
 
@@ -60,10 +62,10 @@
 ```shell
 git init #在一个文件夹下初始化git
 git add {FILES} #将更新过的文件添加到git缓存中
-git commit -m {COMMIT_MESSAGE}#将添加到缓存中的更新提交到分支中
-git branch {BRANCH} #在当前分支创建新的分支
+git commit -m {COMMIT_MESSAGE} #将添加到缓存中的更新提交到分支中
+git branch {BRANCH}  #在当前分支创建新的分支
 git checkout {BRANCH} #切换到指定分支
-git clone {REPO_URL}#从克隆远程仓库到当前工作路径
+git clone {REPO_URL} #从克隆远程仓库到当前工作路径
 git pull {REMOTE_NAME} {BRANCH} #远程指定分支拉取到本地当前分支
 git push {REMOTE_NAME} {BRANCH} #将本地当前分支推到远程指定分支
 git merge {BRANCH} #将本地{BRANCH}合并到当前分支
@@ -77,7 +79,7 @@ TODO
 
 - Fork：开发者将主仓库拉到自己的镜像仓库中。
 - Pull request：简写成PR，开发者在自己的镜像仓发送子分支合并请求，等待审核者审核(Code Review)。
-- Merge request ： 审核者在主仓库执行同意合并请求
+- Merge request ： 审核者在主仓库执行，同意合并请求
 
 # 2.Gitflow简介
 
@@ -99,7 +101,7 @@ GitFlow主要包含了以下分支：
 
 贡献代码的主要步骤是克隆(clone)，开发(develop)与合并(merge)，具体如下：
 1. **Fork**. vision1/proj => wangbo/proj 在gitweb中，目标项目{REMOTE_REPO}={TARGET_USER}/{PROJECT}上点击fork,会生成自己的项目 {USER}/{PROJECT}. 
-2. **Clone**.  wangbo/proj -> wangbo's proj 开发者将镜像仓clone到本地 `git clone {REPO_URL}`. 且初始化的分支主仓库上游`git remote add team {ADDR}/vision1/proj.git`. 查看远程状态 `git remote -v`. `team`为主库对应的remote名称
+2. **Clone**.  wangbo/proj -> wangbo's proj 开发者将镜像仓clone到本地 `git clone {REPO_URL}`. 且初始化的分支主仓库上游`git remote add team {ADDR}/vision1/proj.git`. 查看远程状态 `git remote -v`. team为主库对应的remote名称
 3. **Develop**. wangbo进行更新，提交到本地. `git add {FILES}`，`git commit -m "{COMMIT_MESSAGE}"` 
 4. **Push** wangbo推送到自己的远程仓库wangbo's proj/develop -> wangbo/proj/develop `git push origin develop` 
 5. **PR**. wangbo gitweb上打开`Pull Request` 请求, 等待审核。
@@ -114,7 +116,7 @@ wangbo更新本地代码主要是拉取操作(pull)，具体如下：
 2. 给远程的上游仓库vision1/proj配置一个remote。
 3. 将远程所有的分支fetch下来 `git fetch team`
 4. 合并`git merge team`
-5. 或者`git pull team develop`。git pull = fetch + merge, 若初始化合适,develop可省略，直接`git pull team`
+5. 或者`git pull team develop`。git pull = fetch + merge, 若初始化是git配置合适,develop可省略，直接`git pull team`
 
 此时自己本地的代码就是最新的了。功能修改完成后，可继续提交合并请求PR
 
