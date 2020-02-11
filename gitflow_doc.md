@@ -3,7 +3,7 @@
 
 为了更有力，更深度，更快速的协作开发，并且更好的进行版本管理和控制项目代码，我们将采用自定义的Gitflow-Forking工作流模式。
 
-完整的GitFlow操作起来较为复杂,我们对其进行了定制。在一般的小规模项目中，只保留核心的master和develop分支形成Gitflow-Simplified模式, 便于实践和推广。对于大规模的项目而言，我们采用了定制的Gitflow-Forking工作流。
+完整的GitFlow操作起来较为复杂,我们对其进行了定制。在一般的小规模项目中，只保留核心的master和develop分支形成Gitflow-Simple模式, 便于实践和推广。对于大规模的项目而言，我们采用了定制的Gitflow-Forking工作流。
 
 流程示例如下：
 
