@@ -263,6 +263,8 @@ pull下来后，参照第4-7步进行就OK了
 - 如果你觉得我们定制的GitFlow流程复杂，那一定是你的git推拉基本功不够，抓紧补课。我们已经是极简的Flow了。
   
 - 作为专业的开发人员，推荐使用英文原版gitea web界面
+
+- vscode是一个无论是写代码还是写文档的强大的免费的编辑器。它支持众多插件，例如很多markdown插件等等。
   
 - 开发推荐使用zsh, 能够实时显示项目当前所在的分支，ohmyzsh设置漂亮的主题 https://ohmyz.sh/
 ![zsh主题](./images/zsh_theme.png)
