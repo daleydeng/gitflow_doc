@@ -50,6 +50,7 @@
 - **合并冲突本地化**。冲突来自于不一致，当主库被别人更新，自己本地又有更新时。从主库pull的时候就有发生冲突的可能性。在本地解决冲突，解决完和主库同步后，再提交新的修改。创建PR。若没解决冲突，提交的PR是无法被合并到主库的。所以，鼓励开发者从主库多pull, 勤pull，保证一致。不要拖得太久，不然主库和本地差异过大时，本地解决冲突变成一件难事。
 - **ISSUES建议**。其他人对项目的一些修改意见，但是无开发权限，如管理层人员的，可以通过gitweb上该项目的ISSUES面板提出建议，开发者根据情况回应。鼓励多讨论多提建议。
 - **提交**。UNIX哲学一次提交只干一件事情，鼓励多次小提交。鼓励开发者讲提交信息(Commit Message)尽可能写清楚，按照国际标准和最佳实践规范写。方便将来能方便的检索和回溯，撤回修改等等操作。
+- **大数据妥善处理**. 大数据主要包括二进制，大文件，多文件等。仓库尽可能保证精简，例如只包含纯代码和配套的少量测试样例或者资源数据。不要将大数据放到git仓库中，那样会造成版本体积过载，严重增加仓库体积，不利于维护和传输(git 会将历史全部保存)。对于二进制/大文件的处理方式有gitignore，git, git lfs, 云盘四种方式。处理的优先级是gitignore > 云盘/git lfs > git。
 
 # 目录
 
@@ -90,7 +91,7 @@ git官方提供gitk和git gui两个图形客户端。一个用来查看历史，
 
 - TortoiseGit
 - gitextensisons
-  
+
 ![GitExtensions界面](./images/git_gui_Git_Extensions.png)
 
 linux下有：
@@ -103,6 +104,32 @@ linux下有：
 - Fork：开发者将主仓库拉到自己的镜像仓库中。
 - Pull request：简写成PR，开发者在自己的镜像仓发送子分支合并请求，等待审核者审核(Code Review)。
 - Merge request ： 审核者在主仓库执行，同意合并请求
+
+## 1.4.git大叔据处理
+
+大数据主要包括二进制，大文件，多文件等。git的初衷是进行文本代码版本控制，不是为了二进制文件或者大文件。代码文件一般比较小，git针对文本做了优化(比如合理的diff)。而且为防止历史信息爆炸，git不允许提交100M以上的文件。但是项目中经常会用一些二进制文件(如pkl)或是大文件(如数据集)。这时需要使用lfs插件处理。
+
+在实际项目中，为了减少仓库体积，二进制/大文件处理有几种方式：
+
+- 忽略(gitignore)。对于可以再通过程序生成的二进制文件，将其添加到.gitignore中，不进行版本控制。如生成的结果文件。甚至可再生成的文本文件也可以忽略。如日志文件，生成的代码文件等
+- 小的并且数量不多的二进制文件。可以用传统的git方式版本控制。如文档中的配图，一些小的单元测试数据，文档配套配图等。
+- 大的或多的文件。可以选择走云盘共享外连接的方式(如将下载地址放到README.md中)或者lfs。例如深度学习训练出来的模型文件可以走lfs, 完整的数据集下载可以走云盘。根据情况合理的选择。如深度学习模型文件适合lfs，完整数据集适合云盘。
+
+Git LFS是Github开发的一个Git的扩展，用于实现Git对大文件的支持。由于LFS是Git的一个扩展，所以没有改变Git的工作方式，其是把指定需要LFS管理的文件替换成了一个指针文件交给Git进行版本管理。在pull/push等这些操作中，LFS又通过LFS服务器把这些文件的真身给下载或上传回来。通过这样的手段，使得本地仓库的体积大大减小，而不会出现随着这些文件的版本增多而体积剧烈膨胀的情况。这种把存储负担转移给了服务器的做法，让其强依赖于LFS服务器，本地仓库并不是一个完整的仓库。
+
+![git lfs原理](./images/git_lfs原理.png)
+
+例如在深度学习项目开发中，训练模型，日志信息，数据集占比很大。但Git的diff/patch等是基于文件行的，对于二进制文件来说，Git需要存储每次commit的改动。每次当二进制文件修改，发生变化的时候，都会产生额外的提交量，导致clone和pull的数据量大增，在线仓库的体积也会迅速增长。
+
+没使用Git之前，一般二进制文件和源代码分成两块，分别存放到不同的SVN仓库上（防止二进制文件中有病毒感染服务器，所以进行隔离）。当切换到Git上进行版本管理，就可以使用git lfs来管理这些二进制文件，这样就可以让源码和二进制文件和谐共存于一处，从而不像以前那样，需要分别做两次更新
+
+![大文件提交爆炸](./images/大文件提交爆炸.png)
+
+LFS(Large File Storage)就是为了解决这一问题而产生的工具，它将你所标记的大文件保存至另外的仓库，而在主仓库仅保留其轻量级指针。那么当检出版本时，根据指针的变化情况下更新对应的大文件，而不是在本地保存所有版本的大文件。
+
+![git lfs示意](./images/git_lfs示意.png)
+
+具体操作示例 **TODO**
 
 # 2.Gitflow简介
 
@@ -125,10 +152,10 @@ GitFlow主要包含了以下分支：
 
 贡献代码的主要步骤是克隆(clone)，开发(develop)与合并(merge)，具体如下：
 
-1. **Fork**. vision1/proj => wangbo/proj 在gitweb中，目标项目{REMOTE_REPO}={TARGET_USER}/{PROJECT}上点击fork,会生成自己的项目 {USER}/{PROJECT}. 
+1. **Fork**. vision1/proj => wangbo/proj 在gitweb中，目标项目{REMOTE_REPO}={TARGET_USER}/{PROJECT}上点击fork,会生成自己的项目 {USER}/{PROJECT}.
 2. **Clone**.  wangbo/proj -> wangbo's proj 开发者将镜像仓clone到本地 `git clone {REPO_URL}`. 且初始化的分支主仓库上游`git remote add team {ADDR}/vision1/proj.git`. 查看远程状态 `git remote -v`. team为主库对应的remote名称
-3. **Develop**. wangbo进行更新，提交到本地. `git add {FILES}`，`git commit -m "{COMMIT_MESSAGE}"` 
-4. **Push** wangbo推送到自己的远程仓库wangbo's proj/develop -> wangbo/proj/develop `git push origin develop` 
+3. **Develop**. wangbo进行更新，提交到本地. `git add {FILES}`，`git commit -m "{COMMIT_MESSAGE}"`
+4. **Push** wangbo推送到自己的远程仓库wangbo's proj/develop -> wangbo/proj/develop `git push origin develop`
 5. **PR**. wangbo gitweb上打开`Pull Request` 请求, 等待审核。
 6. **Merge**. 审核者vision1会审核你提交的代码，若没问题则接受合并。若有问题，双方在PR面板上交流讨论后，继续改进后续再次提交PR或者开发者说服审核者通过该PR.
 
@@ -198,7 +225,7 @@ wangbo从vision1的仓库fork过来项目
 wangbo从自己的远程仓库clone到本地仓库
 
 ```shell
-wangbo> git clone -b develop https://git.qingtong123.com/wangbo/proj.git 
+wangbo> git clone -b develop https://git.qingtong123.com/wangbo/proj.git
 ```
 
 这里"-b develop"用来指定clone仓库中的develop分支，如果不加，会默认clone master分支
@@ -261,16 +288,16 @@ pull下来后，参照第4-7步进行就OK了
 # 小贴士Tips
 
 - 如果你觉得我们定制的GitFlow流程复杂，那一定是你的git推拉基本功不够，抓紧补课。我们已经是极简的Flow了。
-  
+
 - 作为专业的开发人员，推荐使用英文原版gitea web界面
-  
+
 - 开发推荐使用zsh, 能够实时显示项目当前所在的分支，ohmyzsh设置漂亮的主题 https://ohmyz.sh/
 ![zsh主题](./images/zsh_theme.png)
 
 - git相关的配置信息在配置文档里，如remote名字地址，合并信息等，项目相关的.git/config里，全局的在~/.gitconfig. 有时候，直接文本修改git config文件更方便
-  
+
 - git中一切可配置。如果你总是重复输入一个固定的东西，那那个东西一定可配置，使得你不用重复输入。例如如果每次都运行git pull team develop，那么team和develop信息是可配置的（具体配置命令自己查），配置完以后git pull即可。配置的信息存在.git/config里面。
-  
+
 - 每个项目git初始化是会产生一个默认的master分支
 
 - 本开发者地库也开develop分支，这样推送的时候git会匹配分支，将本地的develop推送到上游仓库的develop
