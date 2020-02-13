@@ -332,7 +332,11 @@ pull下来后，参照第4-7步进行就OK了
 
 - git中一切可配置。如果你总是重复输入一个固定的东西，那那个东西一定可配置，使得你不用重复输入。例如如果每次都运行git pull team develop，那么team和develop信息是可配置的（具体配置命令自己查），配置完以后git pull即可。配置的信息存在.git/config里面。
 
+- git中可以配置别名alias方便输入。比如git st = git status。具体别名参数自己配置且会在.git/config中呈现。
+
 - 每个项目git初始化是会产生一个默认的master分支
+
+- 提交前多用git status查看，决定那些要提交那些不提交。查看目录的status注意目录符号不能省。例如git status samples/ 而不是git status samples。这样就能看目录里面的内容。
 
 - 本开发者地库也开develop分支，这样推送的时候git会匹配分支，将本地的develop推送到上游仓库的develop
 
