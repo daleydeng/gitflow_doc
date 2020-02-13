@@ -161,6 +161,7 @@ LFS(Large File Storage)就是为了解决这一问题而产生的工具，它将
         Git LFS: (1 of 1 files) 9.18 KB / 9.18 KB
         ...
     ```
+- 在成功push后，可以在仓库的设置选项卡中，点击LFS选项卡，查看LFS存储的文件信息
 
 # 2.Gitflow简介
 
