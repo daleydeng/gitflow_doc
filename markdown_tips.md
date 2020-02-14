@@ -34,12 +34,20 @@ Markdown是一种可以使用普通文本编辑器编写的标记语言，通过
 ## 编辑工具
 
 1. 咱们的云笔记(https://note.qingtong123.com/)
+
 2. vscode插件
     1. Markdown Preview Enhanced,可以边编辑边预览，右键使用
     2. Markdown PDF，可以将markdown预览导出成pdf，html，jpeg等文件
     ![Vscode Markdown插件示意图](./images/markdown_vscode.png)
 
 3. git服务器上的编辑器
+
+    使用方法如下：
+    
+    ![git服务器上的编辑方法](./images/markdown_git_editor1.png)
+    
+    ![git服务器上的编辑方法](./images/markdown_git_editor2.png)
+    
 4. bookstack
 
 ## 教程
