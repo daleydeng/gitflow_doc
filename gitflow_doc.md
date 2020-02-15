@@ -137,12 +137,12 @@ LFS(Large File Storage)就是为了解决这一问题而产生的工具，它将
 具体操作示例 
 
 - 安装git lfs(Linux redhat)
-    ```shell
+    ```sh
       sudo yum install -y git-lfs  
       git lfs install 
     ```
 - 配置LFS管理的文件
-    ```shell
+    ```sh
        git lfs track "<目录>/*.png"  # 或者 *.pth 等 按照需要进行指定
     ```
 - 执行上面的命令会在项目的根目录生成 .gitattributes， 添加lfs .gitattributes配置到仓库
@@ -151,13 +151,13 @@ LFS(Large File Storage)就是为了解决这一问题而产生的工具，它将
        commit -m "init  git lfs config"
     ```
 - 添加并且上传大文件
-    ```shell
+    ```sh
        sudo git add <目录>/xxx
        sudo git commit -m "update xxx"
        sudo git push 
     ```
 - 基于git lfs 管理的文件更新会显示如下内容
-    ```shell
+    ```sh
         Git LFS: (1 of 1 files) 9.18 KB / 9.18 KB
         ...
     ```
