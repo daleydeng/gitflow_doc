@@ -1,9 +1,9 @@
 kind: pipeline
 type: docker
-name: test python
+name: build web
 
 steps:
-- name: test
+- name: build
   image: python:3
   environment:
     PORT:
