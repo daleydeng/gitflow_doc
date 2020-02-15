@@ -357,3 +357,5 @@ pull下来后，参照第4-7步进行就OK了
 - 对于刚入门者，git的图形客户端(gui)是可以推荐使用的,有助于快速了解有哪些功能和对应后台的命令。
 
 - 在git网页端，repo界面，查看commit历史时，可以点击 commit graph 查看整个branch的提交图
+
+CI by DRONE!
