@@ -1,0 +1,27 @@
+kind: pipeline
+type: docker
+name: test python
+
+steps:
+- name: test
+  image: python:3
+  environment:
+    PORT:
+      from_secret: rsync_port
+    USR:
+      from_secret: rsync_uname
+    UPWD:
+      from_secret: rsync_pwd
+    IP:
+      from_secret: rsync_local_ip
+    PUBDIR:
+      from_secret: rsync_dir
+   
+  commands:
+   - sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+   - apt-get update -y
+   - apt-get install sshpass rsync -y
+   - pip install -i https://pypi.tuna.tsinghua.edu.cn/simple  mkdocs fire
+   - mkdir web
+   - python scripts/deploy_site.py web/
+   - sshpass -p $UPWD rsync -avue "ssh -p $PORT" web/* $USR@$IP:$PUBDIR
