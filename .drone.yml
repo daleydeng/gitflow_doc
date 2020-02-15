@@ -19,8 +19,8 @@ steps:
    
   commands:
    - sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
-   - apt-get update -y
-   - apt-get install sshpass rsync -y
+   - apt-get update -y && apt-get install sshpass rsync -y
+   - mkdir -p ~/.ssh && echo "StrictHostKeyChecking no" > ~/.ssh/config
    - pip install -i https://pypi.tuna.tsinghua.edu.cn/simple  mkdocs fire
    - mkdir web
    - python scripts/deploy_site.py web/
