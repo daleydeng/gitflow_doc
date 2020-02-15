@@ -185,7 +185,7 @@ GitFlow主要包含了以下分支：
 贡献代码的主要步骤是克隆(clone)，开发(develop)与合并(merge)，具体如下：
 
 1. **Fork**. vision1/proj => wangbo/proj 在gitweb中，目标项目{REMOTE_REPO}={TARGET_USER}/{PROJECT}上点击fork,会生成自己的项目 {USER}/{PROJECT}.
-2. **Clone**.  wangbo/proj -> wangbo's proj 开发者将镜像仓clone到本地 `git clone {REPO_URL}`. 且初始化的分支主仓库上游`git remote add team {ADDR}/vision1/proj.git`. 查看远程状态 `git remote -v`. team为主库对应的remote名称
+2. **Clone**.  wangbo/proj -> wangbo's proj 开发者将镜像仓clone到本地 `git clone {REPO_URL}`. 且初始化的分支主仓库上游`git remote add center {ADDR}/vision1/proj.git`. 查看远程状态 `git remote -v`. center为主库对应的remote名称
 3. **Develop**. wangbo进行更新，提交到本地. `git add {FILES}`，`git commit -m "{COMMIT_MESSAGE}"`
 4. **Push** wangbo推送到自己的远程仓库wangbo's proj/develop -> wangbo/proj/develop `git push origin develop`
 5. **PR**. wangbo gitweb上打开`Pull Request` 请求, 等待审核。
@@ -199,9 +199,9 @@ wangbo更新本地代码主要是拉取操作(pull)，具体如下：
 
 1. 确保本地在develop分支
 2. 给远程的上游仓库vision1/proj配置一个remote。
-3. 将远程所有的分支fetch下来 `git fetch team`
-4. 合并`git merge team`
-5. 或者`git pull team develop`。git pull = fetch + merge, 若初始化时git配置合适,develop可省略，直接`git pull team`
+3. 将远程所有的分支fetch下来 `git fetch center`
+4. 合并`git merge center`
+5. 或者`git pull center develop`。git pull = fetch + merge, 若初始化时git配置合适,develop可省略，直接`git pull center`
 
 此时自己本地的代码就是最新的了。功能修改完成后，可继续提交合并请求PR
 
@@ -330,7 +330,7 @@ pull下来后，参照第4-7步进行就OK了
 
 - git相关的配置信息在配置文档里，如remote名字地址，合并信息等，项目相关的.git/config里，全局的在~/.gitconfig. 有时候，直接文本修改git config文件更方便
 
-- git中一切可配置。如果你总是重复输入一个固定的东西，那那个东西一定可配置，使得你不用重复输入。例如如果每次都运行git pull team develop，那么team和develop信息是可配置的（具体配置命令自己查），配置完以后git pull即可。配置的信息存在.git/config里面。
+- git中一切可配置。如果你总是重复输入一个固定的东西，那那个东西一定可配置，使得你不用重复输入。例如如果每次都运行git pull center develop，那么center和develop信息是可配置的（具体配置命令自己查），配置完以后git pull即可。配置的信息存在.git/config里面。
 
 - git中可以配置别名alias方便输入。比如git st = git status。具体别名参数自己配置且会在.git/config中呈现。
 
