@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import os.path as osp
-base_d = osp.dirname(__file__)+'/../'
+base_d = osp.join(osp.dirname(__file__), '..')
 import subprocess
 
 cmd_make_site = "cd {base_d}/docgen/; make site"
