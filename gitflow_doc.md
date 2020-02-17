@@ -373,3 +373,7 @@ pull下来后，参照第4-7步进行就OK了
     - ```sh
       docker push dhub.qingtong123.com/git/IMAGE[:TAG]
       ```
+  - pull镜像
+    - ```sh
+      docker pull dhub.qingtong123.com/git/IMAGE[:TAG]
+      ```
