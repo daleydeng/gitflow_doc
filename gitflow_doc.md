@@ -358,4 +358,18 @@ pull下来后，参照第4-7步进行就OK了
 
 - 在git网页端，repo界面，查看commit历史时，可以点击 commit graph 查看整个branch的提交图
 
-CI by DRONE!
+- 如何使用私有dockerhub？
+  - 注册 https://dhub.qingtong123.com/  
+  - 在页面登陆后创建项目， 例如创建了git项目
+  - 使用docker命令登陆私有dockerhub 
+    - ```sh
+      docker login -u username -p pwd dhub.qingtong123.com
+      ```
+  - 给你的镜像打标签 注意 dhub.qingtong123.com/git/ 这个git是你创建的项目名
+    - ```sh
+      docker tag SOURCE_IMAGE[:TAG] dhub.qingtong123.com/git/IMAGE[:TAG]
+      ```
+  - push镜像
+    - ```sh
+      docker push dhub.qingtong123.com/git/IMAGE[:TAG]
+      ```
