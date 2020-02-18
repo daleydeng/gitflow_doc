@@ -21,4 +21,4 @@ steps:
     RSYNC_REMOTEDIR:
       from_secret: rsync_remote_dir
   commands:
-   - go_rsync -h $RSYNC_HOST -src $PROJECT_DIR -dest $RSYNC_REMOTEDIR
+   - go_rsync -h $RSYNC_HOST -src $PROJECT_DIR -dst $RSYNC_REMOTEDIR
