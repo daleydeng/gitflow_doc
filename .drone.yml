@@ -2,15 +2,20 @@ kind: pipeline
 type: docker
 name: gitflow_doc_drone
 
+environment:
+  PROJECT_DIR: gitflow_doc
+
 steps:
+
 - name: build
   image: dhub.qingtong123.com/ci/doc_ci
+  commands:
+   - python scripts/deploy_site.py $PROJECT_DIR
+   
+- name: deploy
+  image: dhub.qingtong123.com/ci/doc_ci  
   environment:
     RSYNC_CMD:
       from_secret: rsync_cmd
-
-    PROJECT_DIR: gitflow_doc
-
   commands:
-   - python scripts/deploy_site.py $PROJECT_DIR
    - bash -c "$RSYNC_CMD"
