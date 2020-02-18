@@ -62,6 +62,7 @@
 * [2.Gitflow简介](#2-gitflow简介)
 * [3.Gitflow功能命令集](#3-gitflow功能命令集)
 * [4.Gitflow简单示范](#4-gitflow简单示范)
+* [5.CI教程](#5-CI教程)
 * [小贴士Tips](#小贴士tips)
 
 # 1.Git基本操作
@@ -317,6 +318,37 @@ wangbo:proj(develop)> git pull {REPO_URL}/proj/wangbo develop:develop # 配置�
 ```
 pull下来后，参照第4-7步进行就OK了
 
+# 5 CI教程
+
+CI持续集成，是实时检测项目在git平台上的改动从而自动完成目标服务器上的项目更新和部署。中间过程和最终部署离不开docker.
+为了加速docker的下载与本地安全。我们搭建了私有dockerhub. 持续集成的框架采用[drone](https://drone.io/).
+
+## 5.1 私有dockerhub
+
+- - 如何使用私有dockerhub？
+  - 注册 https://dhub.qingtong123.com/  
+  - 在页面登陆后创建项目， 例如创建了git项目
+  - 使用docker命令登陆私有dockerhub 
+    - ```sh
+      docker login -u username -p pwd dhub.qingtong123.com
+      ```
+  - 给你的镜像打标签 注意 dhub.qingtong123.com/git/ 这个git是你创建的项目名
+    - ```sh
+      docker tag SOURCE_IMAGE[:TAG] dhub.qingtong123.com/git/IMAGE[:TAG]
+      ```
+  - push镜像
+    - ```sh
+      docker push dhub.qingtong123.com/git/IMAGE[:TAG]
+      ```
+  - pull镜像
+    - ```sh
+      docker pull dhub.qingtong123.com/git/IMAGE[:TAG]
+      ```
+      
+## 5.2 Drone-CI
+
+TODO
+
 # 小贴士Tips
 
 - 如果你觉得我们定制的GitFlow流程复杂，那一定是你的git推拉基本功不够，抓紧补课。我们已经是极简的Flow了。
@@ -358,22 +390,3 @@ pull下来后，参照第4-7步进行就OK了
 
 - 在git网页端，repo界面，查看commit历史时，可以点击 commit graph 查看整个branch的提交图
 
-- 如何使用私有dockerhub？
-  - 注册 https://dhub.qingtong123.com/  
-  - 在页面登陆后创建项目， 例如创建了git项目
-  - 使用docker命令登陆私有dockerhub 
-    - ```sh
-      docker login -u username -p pwd dhub.qingtong123.com
-      ```
-  - 给你的镜像打标签 注意 dhub.qingtong123.com/git/ 这个git是你创建的项目名
-    - ```sh
-      docker tag SOURCE_IMAGE[:TAG] dhub.qingtong123.com/git/IMAGE[:TAG]
-      ```
-  - push镜像
-    - ```sh
-      docker push dhub.qingtong123.com/git/IMAGE[:TAG]
-      ```
-  - pull镜像
-    - ```sh
-      docker pull dhub.qingtong123.com/git/IMAGE[:TAG]
-      ```
