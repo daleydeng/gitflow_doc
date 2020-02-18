@@ -18,6 +18,6 @@ steps:
       from_secret: rsync_dir
    
   commands:
-   - mkdir web
-   - python scripts/deploy_site.py web/
-   - sshpass -p $UPWD rsync -avue "ssh -p $PORT" web/* $USR@$IP:$PUBDIR
+   - mkdir gitflow_doc
+   - python scripts/deploy_site.py gitflow_doc/
+   - sshpass -p $UPWD rsync -avue "ssh -p $PORT" gitflow_doc $USR@$IP:$PUBDIR
