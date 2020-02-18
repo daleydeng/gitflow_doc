@@ -1,23 +1,16 @@
 kind: pipeline
 type: docker
-name: build web
+name: gitflow_doc_drone
 
 steps:
 - name: build
-  image: dhub.qingtong123.com/git_ci/gitflow_doc_ci
+  image: dhub.qingtong123.com/ci/doc_ci
   environment:
-    PORT:
-      from_secret: rsync_port
-    USR:
-      from_secret: rsync_uname
-    UPWD:
-      from_secret: rsync_pwd
-    IP:
-      from_secret: rsync_local_ip
-    PUBDIR:
-      from_secret: rsync_dir
-   
+    RSYNC_CMD:
+      from_secret: rsync_cmd
+
+    PROJECT_DIR: gitflow_doc
+
   commands:
-   - mkdir gitflow_doc
-   - python scripts/deploy_site.py gitflow_doc/
-   - sshpass -p $UPWD rsync -avue "ssh -p $PORT" gitflow_doc $USR@$IP:$PUBDIR
+   - python scripts/deploy_site.py $PROJECT_DIR
+   - bash -c "$RSYNC_CMD"
