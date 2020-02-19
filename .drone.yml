@@ -16,9 +16,23 @@ steps:
 - name: deploy
   image: dhub.qingtong123.com/ci/go_rsync
   environment:
-    RSYNC_HOST:
-      from_secret: rsync_host
-    RSYNC_REMOTEDIR:
-      from_secret: rsync_remote_dir
+    RSYNC_PORT:
+      from_secret: www_ssh_port
+    RSYNC_REMOTE_ADDR:
+      from_secret: www_pub_remote_addr
   commands:
-   - go_rsync -host $RSYNC_HOST -src $PROJECT_DIR -dst $RSYNC_REMOTEDIR
+   - go_rsync -port $RSYNC_PORT -src $PROJECT_DIR -remote_addr $RSYNC_REMOTE_ADDR 
+
+---
+kind: secret
+name: www_pub_remote_addr
+get:
+  path: secrets/data/docker
+  name: www_pub_remote_addr
+
+---
+kind: secret
+name: www_ssh_port
+get:
+  path: secrets/data/docker
+  name: www_ssh_port
