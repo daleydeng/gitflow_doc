@@ -390,5 +390,5 @@ TODO
 
 - 在git网页端，repo界面，查看commit历史时，可以点击 commit graph 查看整个branch的提交图
 
-- 如果CI构建失败，想重新触发CI但不改变仓库，可以执行 `git commit --amend --no-edit && git push --force` 来提交空commit触发
+- 如果CI构建失败，想重新触发CI但不改变仓库，可以执行 `git commit --amend --no-edit && git push --force` 来推送空的commit触发
 
