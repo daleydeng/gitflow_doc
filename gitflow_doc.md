@@ -392,7 +392,7 @@ TODO
 
 - 如果CI构建失败，想重新触发CI但不改变仓库，可以执行 `git commit --amend --no-edi中心仓t && git push --force` 来推送空的commit触发
 
-- 如何禁用git push. 在有上游中心仓和下游fork镜像仓时，一般本地开发的时候会pull中心仓(upstream)，而会pull/push fork镜像仓(origin)，但是不能push upstream. 禁用的方法如下
+- 如何禁用git push. 在有上游中心仓和下游fork镜像仓时，一般本地开发的时候会pull中心仓(upstream)，而会pull/push fork镜像仓(origin)，但是不能push upstream. 以后使用的时候根据情况运行git pull upstream 或 git pull/push origin即可。禁用的方法如下
 
 ```
 > git remote -v
@@ -409,4 +409,3 @@ upstream ssh://git@git.qingtong123.com:10022/mirrors/colmap.git (fetch)
 upstream DISABLE (push)
 
 ```
-如上，以后使用的时候根据情况运行git pull upstream 或 git pull/push origin即可
