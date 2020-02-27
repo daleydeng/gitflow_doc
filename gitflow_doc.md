@@ -396,17 +396,17 @@ TODO
 
 ```
 > git remote -v
-origin	ssh://git@git.qingtong123.com:10022/daleydeng/colmap.git (fetch)
-origin	ssh://git@git.qingtong123.com:10022/daleydeng/colmap.git (push)
-upstream	ssh://git@git.qingtong123.com:10022/mirrors/colmap.git (fetch)
-upstream	ssh://git@git.qingtong123.com:10022/mirrors/colmap.git (push)
+origin	 ssh://git@git.qingtong123.com:10022/daleydeng/colmap.git (fetch)
+origin	 ssh://git@git.qingtong123.com:10022/daleydeng/colmap.git (push)
+upstream ssh://git@git.qingtong123.com:10022/mirrors/colmap.git (fetch)
+upstream ssh://git@git.qingtong123.com:10022/mirrors/colmap.git (push)
 
 > git remote set-url --push upstream DISABLE
 > git remote -v
-origin	ssh://git@git.qingtong123.com:10022/daleydeng/colmap.git (fetch)
-origin	ssh://git@git.qingtong123.com:10022/daleydeng/colmap.git (push)
-upstream	ssh://git@git.qingtong123.com:10022/mirrors/colmap.git (fetch)
-upstream	DISABLE (push)
+origin	 ssh://git@git.qingtong123.com:10022/daleydeng/colmap.git (fetch)
+origin   ssh://git@git.qingtong123.com:10022/daleydeng/colmap.git (push)
+upstream ssh://git@git.qingtong123.com:10022/mirrors/colmap.git (fetch)
+upstream DISABLE (push)
 
 ```
 
