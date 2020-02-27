@@ -186,7 +186,7 @@ GitFlow主要包含了以下分支：
 贡献代码的主要步骤是克隆(clone)，开发(develop)与合并(merge)，具体如下：
 
 1. **Fork**. vision1/proj => wangbo/proj 在gitweb中，目标项目{REMOTE_REPO}={TARGET_USER}/{PROJECT}上点击fork,会生成自己的项目 {USER}/{PROJECT}.
-2. **Clone**.  wangbo/proj -> wangbo's proj 开发者将镜像仓clone到本地 `git clone {REPO_URL}`. 且初始化的分支主仓库上游`git remote add center {ADDR}/vision1/proj.git`. 查看远程状态 `git remote -v`. center为主库对应的remote名称
+2. **Clone**.  wangbo/proj -> wangbo's proj 开发者将镜像仓clone到本地 `git clone {REPO_URL}`. 且初始化的分支主仓库上游`git remote add upstream {ADDR}/vision1/proj.git`. 查看远程状态 `git remote -v`. upstream为主库对应的remote名称
 3. **Develop**. wangbo进行更新，提交到本地. `git add {FILES}`，`git commit -m "{COMMIT_MESSAGE}"`
 4. **Push** wangbo推送到自己的远程仓库wangbo's proj/develop -> wangbo/proj/develop `git push origin develop`
 5. **PR**. wangbo gitweb上打开`Pull Request` 请求, 等待审核。
@@ -200,9 +200,9 @@ wangbo更新本地代码主要是拉取操作(pull)，具体如下：
 
 1. 确保本地在develop分支
 2. 给远程的上游仓库vision1/proj配置一个remote。
-3. 将远程所有的分支fetch下来 `git fetch center`
-4. 合并`git merge center`
-5. 或者`git pull center develop`。git pull = fetch + merge, 若初始化时git配置合适,develop可省略，直接`git pull center`
+3. 将远程所有的分支fetch下来 `git fetch upstream`
+4. 合并`git merge upstream`
+5. 或者`git pull upstream develop`。git pull = fetch + merge, 若初始化时git配置合适,develop可省略，直接`git pull upstream`
 
 此时自己本地的代码就是最新的了。功能修改完成后，可继续提交合并请求PR
 
@@ -230,15 +230,15 @@ vision1:proj> git init
 vision1:proj(master)> touch readme.txt
 vision1:proj(master)> git add readme.txt
 vision1:proj(master)> git commit -m "这是第一次提交，会默认提交到master分支"
-#在新生成的master分支上建一个develop分支
-vision1:proj(master)> git branch develop
-#从master分支切换到develop分支
-vision1:proj(master)> git checkout develop # 或者直接git checkout -b develop
+#在新生成的master分支上建一个develop分支git add remote fetch onlyggit add remote fetch onlyit add remote fetch only
+vision1:proj(master)> git branch developgit add remote fetch ongit add remote fetch onlyly
+#从master分支切换到develop分支git add remote fetch onlygit add remotegigit add remote fetch onlyt add remote fetch only fetch onlygit add remote fetch onlygit add remote fetch onlygit a改变 更改git add remote fetch only                          git add remote fetch only 个////百年来/吧/个/吧/gv//个/个/dd remote fetch onlygit add remote fetch onlygit add remote fetch only 
+vision1:proj(master)> git checkout develop # 或者直接git checkout -b git add remote fetch onlygit add remote fetch only develop
 #在develop分支上开发，这里生成了develop.txt，并提交到了develop分支
 vision1:proj(develop)> touch develop.txt
 vision1:proj(develop)> git add develop.txt
 vision1:proj(develop)> git commit -m "基于master分支生成了develop分支，并添加了develop.txt"
-#添加vision1的远程仓库地址（地址在仓库代码页面），并给他取别名为vision1
+#添加vision1的远程仓库地址（地址在仓库代码页面），并给他取别名为vision1git add remote fetch only                                      
 vision1:proj(develop)> git remote add origin https://git.qingtong123.com/vision1/proj.git
 #将本地仓库推送到远程仓库，这里-all表示所有分支
 vision1:proj(develop)> git push origin -all #或者git push
@@ -362,7 +362,7 @@ TODO
 
 - git相关的配置信息在配置文档里，如remote名字地址，合并信息等，项目相关的.git/config里，全局的在~/.gitconfig. 有时候，直接文本修改git config文件更方便
 
-- git中一切可配置。如果你总是重复输入一个固定的东西，那那个东西一定可配置，使得你不用重复输入。例如如果每次都运行git pull center develop，那么center和develop信息是可配置的（具体配置命令自己查），配置完以后git pull即可。配置的信息存在.git/config里面。
+- git中一切可配置。如果你总是重复输入一个固定的东西，那那个东西一定可配置，使得你不用重复输入。例如如果每次都运行git pull upstream develop，那么upstream和develop信息是可配置的（具体配置命令自己查），配置完以后git pull即可。配置的信息存在.git/config里面。
 
 - git中可以配置别名alias方便输入。比如git st = git status。具体别名参数自己配置且会在.git/config中呈现。
 
@@ -390,5 +390,23 @@ TODO
 
 - 在git网页端，repo界面，查看commit历史时，可以点击 commit graph 查看整个branch的提交图
 
-- 如果CI构建失败，想重新触发CI但不改变仓库，可以执行 `git commit --amend --no-edit && git push --force` 来推送空的commit触发
+- 如果CI构建失败，想重新触发CI但不改变仓库，可以执行 `git commit --amend --no-edi中心仓t && git push --force` 来推送空的commit触发
+
+- 如何禁用git push. 在有上游中心仓和下游fork镜像仓时，一般本地开发的时候会pull中心仓(upstream)，而会pull/push fork镜像仓(origin)，但是不能push upstream. 禁用的方法如下
+
+```
+> git remote -v
+origin	ssh://git@git.qingtong123.com:10022/daleydeng/colmap.git (fetch)
+origin	ssh://git@git.qingtong123.com:10022/daleydeng/colmap.git (push)
+upstream	ssh://git@git.qingtong123.com:10022/mirrors/colmap.git (fetch)
+upstream	ssh://git@git.qingtong123.com:10022/mirrors/colmap.git (push)
+
+> git remote set-url --push upstream DISABLE
+> git remote -v
+origin	ssh://git@git.qingtong123.com:10022/daleydeng/colmap.git (fetch)
+origin	ssh://git@git.qingtong123.com:10022/daleydeng/colmap.git (push)
+upstream	ssh://git@git.qingtong123.com:10022/mirrors/colmap.git (fetch)
+upstream	DISABLE (push)
+
+```
 
