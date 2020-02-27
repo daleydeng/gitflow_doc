@@ -409,4 +409,4 @@ upstream ssh://git@git.qingtong123.com:10022/mirrors/colmap.git (fetch)
 upstream DISABLE (push)
 
 ```
-
+如上，以后使用的时候根据情况运行git pull upstream 或 git pull/push origin即可
