@@ -149,7 +149,7 @@ LFS(Large File Storage)就是为了解决这一问题而产生的工具，它将
 - 执行上面的命令会在项目的根目录生成 .gitattributes， 添加lfs .gitattributes配置到仓库
     ```shell
        git add .gitattributes 
-       commit -m "init  git lfs config"
+       git commit -m "init  git lfs config"
     ```
 - 添加并且上传大文件
     ```sh
