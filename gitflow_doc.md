@@ -409,3 +409,36 @@ upstream DISABLE (push)
 
 ```
 如上，以后使用的时候根据情况运行git pull upstream 或 git pull/push origin即可。
+
+
+- git lfs 如何undo
+
+[stackoverflow](https://stackoverflow.com/questions/48699293/how-to-i-disable-git-lfs)
+
+*Update current commit only*
+If you want to move off LFS, but are not so worried about fixing the entire git history, you can do the following;
+
+```
+git lfs uninstall
+touch **/*
+git commit -a
+```
+This will uninstall LFS support, touch every single file (so that git recognises that is has changed) then commit them all. If you like you could be more specific (ie, **/*.png for example). Note that using ** requires extended glob support enabled (shopt -s globstar on bash)
+
+*Update entire history*
+This worked for me - but it throws lots of errors (I think I'm getting an error for every commit that a file hasn't been added to LFS in) and takes a long time (roughly 2-3 seconds per commit).
+
+```
+git lfs uninstall
+git filter-branch -f --prune-empty --tree-filter '
+  git lfs checkout
+  git lfs ls-files | cut -d " " -f 3 | xargs touch
+  git rm -f .gitattributes
+  git lfs ls-files | cut -d " " -f 3 | git add
+' --tag-name-filter cat -- --all
+```
+
+It uninstalls git LFS support (theoretically preventing LFS from messing with the index) then for each commit it makes sure the LFS files are checked out properly, then touches them all (so git realises they have changed), removes the settings for LFS found in .gitattributes so that when cloning it doesn't keep trying to use LFS, then adds the real file to the index.
+
+After you do the above, you will need to do a force push. Naturally, that'll throw anyone else working on your repo into a detached head state - so doing this during a code freeze is wise. Afterwards, it's probably easiest to get everyone to do a fresh clone.
+
